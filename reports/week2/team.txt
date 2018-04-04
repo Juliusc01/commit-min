@@ -1,0 +1,39 @@
+Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+Week 1 Status Report
+
+Last Week’s Goals:
+Not Applicable
+
+Progress From This Week:
+This week, our group met up to discuss and improve our project pitch. Since the team was merged from 
+two groups who had similar pitches, we discussed creating a proposal that was built upon one of our previous pitches with additional ideas 
+from the other group. 
+
+Additionally, our group discussed possible problems and solutions for our initial concern of having a longer runtime. 
+Our original idea was to run every possible combination of “bug fixes” to see which combination fixes our program. 
+We concluded that we could narrow down the amount of code we check through only checking sections are used by the test we’re focusing on. 
+With that code, we would check if that code was a refactor of a previous commit. 
+If several lines of source code are refactored, those lines can be ignored and our tool will continue to test the possible combinations. 
+A team concern was the 2^n time complexity involved in removing all combinations of lines and continuously running the test suite 
+to detect a bug fix. We are looking into creating a heuristic to avoid this expensive runtime. 
+We are also looking into previous research being done in the field of identifying code refactors to reduce our development overhead.
+
+Our group split up the questions for the Proj2: Project proposal, giving each group member two questions to work on. 
+Additionally, we delved deeper into the implementation details of the project, trying to think of the subtasks that the project 
+could be broken into. Tasks like identifying which areas of code are covered by each test, identifying code refactorings, and 
+experimentally deleting lines of code were several of the subtasks identified. 
+Splitting up the project into relevant subtasks will allow the team to 
+focus on creating a minimum viable product on working on extra enhancements if there is time.
+
+Future Plan:
+Next Week:
+Set up git pre-commit hook to execute script on commit (Jacob)
+Plan how we will store lines of code of interest for use in modules (Evan and Sarah)
+Design how each module interacts with each other and with the system as a whole (Everyone)
+Code parser, refactor tool, and coverage tool framework (Jacob and Conner and Julius)
+Build abstract algorithms to determine if lines of code are refactorings of each other(Julius and Sarah and Conner)
+
+Long Term:
+Consider design decisions for data structures used in modules
+Think about heuristics that will help speed up our random line removal
