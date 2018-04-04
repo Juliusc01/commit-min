@@ -1,5 +1,1 @@
-# commit-min
-# commit-min
-# commit-min
-# commit-min
-# commit-min
+Sample readme to be populated later
