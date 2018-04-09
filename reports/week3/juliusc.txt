@@ -1,0 +1,22 @@
+Julius Christenson: juliusc
+
+Week 3 Individual Status Report
+
+Last Week’s Goals:
+Not Applicable
+
+Progress From This Week:
+This week, our team met on Sunday to talk about different programs to look at that might be useful for our program, and divided them up among us. 
+We thought that first, before we reinvented the wheel, to find various other programs this week that could save us large amounts of dev time. 
+I picked JGit, a java library implementation of Git version control, to take a look at and determine if we could possibly use it in our program.
+A concern of ours was wondering how we could easily take a look at diffs of commits in a format we could use to then try strategies like delta
+debugging and others to narrow commits to just bug fixes. JGit looked promising, and so I took a look at it. I found a blog post on JGit
+(http://www.codeaffine.com/2016/06/16/jgit-diff/) detailing the way in which to use it to get the diff between commits. This looks to be extremely
+useful for our project, allowing us to not have to worry about manually getting and formatting diffs, allowing us to spend more time on other parts
+of the project. While this diversion into related programs wasn't what we had planned for the week beforehand, we think that spending an good
+amount of time on this would be sure to save lots of time later.
+
+Future Plan:
+Next Week:
+Write code that uses JGit's library to get the diff between commits in a useable format.
+Write skeleton code for other parts of our algorithm
