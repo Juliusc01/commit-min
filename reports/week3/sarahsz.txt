@@ -1,0 +1,20 @@
+Section 1 - Goals from a week ago:
+None - did not submit individual report for Week 2
+
+Section 2 - Progress I've Made This Week:
+Our group met up to discuss the feedback we had gotten from our Project 2 Pitch. We decided to look into tools that may potentially help us with our project, and to ensure we were not reinventing the wheel. 
+Essentially, we split up the group to each analyze one of the tools we found and see if it would be potentially useful for our project.
+The tool I am analyzing is MOSS, or MOJI: https://github.com/nordicway/moji
+This is a plagiarism detection tool that we are hoping will help us find refactors of code. To do this, we will compare two versions of code. Me and one of my teammates have both previously taken CSE 444 here and have two different versions of a SimpleDB project. We are planning to meet up and compare our code with MOSS, and see how it detects based on two different people's source code. Additionally, we are planning to refactor some of our code and them compare how it detects changes that are true refactors.
+
+The team is planning to meet tomorrow at 10:30AM for about an hour to discuss our findings.
+
+Section 3 - Plans and Goals for the following Week:
+- Plan how we will store lines of code of interest for use in modules (Evan and Sarah) - currently, one of my teammates is going to be using a test coverage tool that we've researched and when we meet on Tuesday, we will see how accurate this tool is
+- Design how each module interacts with each other and with the system as a whole (Everyone) ~ since we are looking at different tools currently, our next meeting will be to see how we can integrate these tools together in a way that works with our tool
+- Build abstract algorithms to determine if lines of code are refactors of each other (Julius and Sarah and Conner) - currently we are using MOSS to test and see if this is a valid approach, if not, we may need to do more research on refactoring tools and if we cannot find one, try to create one ourselves
+Long Term:
+- Consider design decisions for data structures used in modules
+- Think about heuristics that will help speed up our random line removal
+
+
