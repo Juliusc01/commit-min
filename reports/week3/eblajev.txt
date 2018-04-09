@@ -1,0 +1,20 @@
+Section 1 - Goals from last Week
+  Nothing for this week
+Section 2 - Weekly Progress
+  Our team began by splitting up the research into logical chunks. Since our project involves a multiple step approach, we split the
+  research into 1. Parsing git diffs 2. Refactoring. 3. Delta Debugging/Experimental test removal. I focused on finding more research
+  literature regarding refactoring. Several of the papers and tools I found only worked on Java specific style refactoring. These tools
+  would automatically make sure code did not have a for loop that spanned multiple lines or that there was a space between a closing parenthesis
+  and a opening curly bracket.
+
+  Since we hope to notice more complex refactoring, I will look into the plagiarism detection tool, MOSS later today. A teammate and I have taken CSE 444
+  and we will run the MOSS tool on both of our solutions to the CSE 444 labs to test MOSS. Once we establish a baseline, we will then choose sections
+  of the code and make them exactly the same and run MOSS again. After this we will introduce simple refactoring to see if MOSS detects these refactorings
+  to be logically equivalent.
+
+  We will also look into a library called CheckSims.
+
+Section 3 - Next Week's Goals
+  Next week I will work on determining how to best store line diffs and what sort of data structures to use. Since we are combining multiple external
+  libraries I will also determine the what types of inputs are needed for each library and work on a way to manipulate the output of one library to be
+  and effective input for another library. This is contingent on the team having a consensus on which libraries we would like to use.
