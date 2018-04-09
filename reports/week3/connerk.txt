@@ -1,0 +1,29 @@
+﻿Conner Knight: connerk
+Week 3 Status Report
+
+
+Last Week’s Goals:
+Not Applicable
+
+
+Progress From This Week:
+This week was mostly spent with my team communicating what we wanted our tool to be, there was not too much individual work, since we didn’t want to start implementing anything without consulting our whole team and making sure we agree on our approach and we also wanted to break the tool up into several problems for us to solve.
+we all worked on researching external tools that we could use to eliminate trying to solve problems that have already been solved. We layed out a lot of what we need to get done this week and assigned people to various roles. We made some definite decisions about what we were going to use as our base framework, and we decided to use JGit since it provides good functionality for looking at the diff between two commits and will provide us easy access to examine the code run the Junit tests.
+
+
+We were all tasked with trying to find a tool to solve a particular problem.
+We all talked about how good various tools would be for the job at hand, we discussed the possibility of using plagiarism detectors to detect refactoring and what tools we could use to implement that.
+I came up with a Delta debugging tool linked here http://delta.stage.tigris.org/using_delta.html . Which is supposed to be able to decide if a input line is “interesting” which in our case would be whether a line would impact one of the tests. In the tool in says that an interesting line could be one which caused an error for a program, so there is a possibility that this could be used for the lines of our program as input. Even if this tool doesn’t work out perfectly, I think adding some form of delta debugging into our tool will be very important, since currently our only other approach is to just randomly tests all combinations of lines, which will be exponential in running time, which could cause our tool to be very slow, and potentially unusable. Delta Debugging involves splitting code into halves and testing them and based on the output splitting in halfs again until we can find a fairly tight bound of the lines of code that solves our problem, which will have a lot better running time for the average case, and I think will be very important for our project.
+
+
+Future Plan:
+Next Week:
+* Get a concrete refactor tool in place, and test it with several commits and see if it does a good job at detecting whether the commit was just a refactor.
+* In testing the refactor tool figure out how accurate it is, we don’t want to make the mistake of thinking something is a refactor when it’s a potential bug fix, so that is something we need to be worried about
+* Try to get a concrete test of the linked delta debugging tool, and analyze how feasible that will be for the project
+* If the delta debugging tool doesn't work as imagined figure out a new tool, or in the worst case figure out a way to write my own delta debugging tool
+
+
+Long Term:
+* Consider any other possible algorithms that could speed up our tool beyond delta debugging
+* Get a prototype that can test a refactoring + delta debugging on a git commit and see what our running time for that is, and how tight we can get the number of lines that fixed a bug
