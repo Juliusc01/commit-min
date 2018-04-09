@@ -9,7 +9,7 @@ Originally I was planning to analyze with my teammate the tool MOSS, or MOJI: ht
 This is a plagiarism detection tool that we are hoping will help us find refactors of code.
 To do this, we will compare two versions of code. Me and one of my teammates have both previously taken CSE 444 here and have two different versions of a SimpleDB project.
 
-We were planning to meet up later in the day and compare our code with multiple plagarism detection algorithms, and see how it detects based on two different people's source code. Additionally, we are planning to refactor some of our code and them compare how it detects changes that are true refactors.
+We are meetingt up later today to compare our code with multiple plagarism detection algorithms, and see how it detects based on two different people's source code. Additionally, we are planning to refactor some of our code and them compare how it detects changes that are true refactors.
 
 Unfortunately, we found that MOSS was only run on a remote server. Thus, when we meet up today, we will be researching new tools that we will be testing to help us with detecting refactors vs. different code. The team is planning to meet tomorrow at 10:30AM for about an hour to discuss our findings. 
 
