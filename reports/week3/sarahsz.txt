@@ -11,7 +11,9 @@ To do this, we will compare two versions of code. Me and one of my teammates hav
 
 We are meeting up later today to compare our code with multiple plagarism detection algorithms, and see how it detects based on two different people's source code on the same project. Additionally, we are planning to refactor some of our code and then use the tool to compare our original code vs. the simple refactors we wrote and see how the tool detects changes that are true refactors.
 
-Unfortunately, we found that MOSS was only run on a remote server. Thus, when we meet up today, we will be researching new tools that we will be testing to help us with detecting refactors vs. different code. The team is planning to meet tomorrow at 10:30AM for about an hour to discuss our findings. 
+Unfortunately, we found that MOSS was only run on a remote server. Thus, when we meet up today, we will be researching new tools that we will be testing to help us with detecting refactors vs. different code. 
+
+Our entire team is planning to meet tomorrow at 10:30AM at Mary Gates Hall for about an hour to discuss our findings. 
 
 Section 3 - Plans and Goals for the following Week:
 - Unfortunately, since MOSS runs on a remote server, we may need to look into a different tool to help us find refactors
