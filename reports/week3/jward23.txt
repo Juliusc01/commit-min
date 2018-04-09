@@ -1,0 +1,20 @@
+Week 3 Individual Status Report
+
+Last Week's Goals:
+These are my individual goals from last weekÎéÎ÷s team plan
+-Set up git pre-commit hook to execute script on commit
+-Design how each module interacts with each other and with the system as a whole
+-Code parser, refactor tool, and coverage tool framework
+
+Progress From This Week:
+All of my time this week went into trying to discover external tools that we can use for our project. Originally, I just made a quick plan for how I expected our tool to work and was running off of that premise, but after feedback on our proposal I realized that we may not need to implement everything from scratch. I learned that there is a lot of research related to determining refactoring, I learned about change impact analysis and test impact analysis, and I learned about delta debugging.
+
+The first tool I discovered was JGit. ItÎéÎ÷s a java library for git which conveniently handles a lot of the work for parsing and storing git diff results. Previously we were going to build our own parser to look at changes, but this library looks like it will handle a lot of that for us. Another tool I found is jQAssistant test impact analysis plugin. It appears to be able to find JUnit tests that could be affected by the most recent commit. The first thing on my to-do list for next week is to play around with this plugin and see if it will work for us. I found some other papers on change impact analysis and delta debugging. Some of the other members of the team are evaluating tools that we might be able to use for those modules of our system.
+
+One thing I am struggling with along with our whole team is organizing ourselves in a way such that everybody has something to work on and can contribute effectively. We did not make near as much progress as I expected, but I think the tools we found will help keep our implementation time down later.
+
+Future Plan:
+-Evaluate jQAssistant test impact analysis plugin to see if it will work for us
+-Build java code framework with our included tools
+
+
