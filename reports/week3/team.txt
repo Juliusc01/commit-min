@@ -1,0 +1,40 @@
+Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+Week 3 Status Report
+
+Last Week’s Goals:
+Set up git pre-commit hook to execute script on commit (Jacob)
+Plan how we will store lines of code of interest for use in modules (Evan and Sarah)
+Design how each module interacts with each other and with the system as a whole (Everyone)
+Code parser, refactor tool, and coverage tool framework (Jacob and Conner and Julius)
+Build abstract algorithms to determine if lines of code are refactorings of each other(Julius and Sarah and Conner)
+
+Progress From This Week:
+Our plans for this week changed once we received feedback on our week 2 proposal. 
+Originally we were going to build each of our modules from scratch, but instead we searched for existing tools that work for our project. 
+We determined that JGit is likely to be highly useful in order to put git diffs into a format that we can use in the rest of our project. 
+It allows us to compare two commits and output the diff between them in a usable format, which we can then use to help minimize the commit.
+
+We also looked at a Delta debugging tool that analyses what lines of a file are interesting according to a certain test. 
+We tested it out with smaller inputs and found that it could be very useful for what we are trying to get done. 
+Some difficulties with this tool might be trying to get it to work with Java, as well as seeing how runtime scales with larger inputs.
+
+We looked into refactoring tools through the direction of plagiarism detection tools. 
+Using JPlag, we were able to run a code similarity script on two different team members’ source code. 
+The source code was similar because it was based on a CSE 444 Java project that both team members had implemented in a previous quarter. 
+In addition, we tested it’s detection of simple refactorings on our individual code, such as moving sections of code into a method. 
+From this, we were able to gage output in the form of a GUI and a csv file, where the GUI featured highlighted text on the areas 
+that were simple refactors. In the future, we plan to see how it works with more complex cases and take a closer look at the csv file. 
+
+The last tool we looked at was jQAssistant’s test impact analysis plugin. 
+This was going to replace our coverage tool, but we don’t believe it will be usable for our project. 
+The tool is added as a plugin to a project using maven and for large codebases, it took minutes for the tool to be able to create 
+a test-suite. We would like our tool to be run quickly and on any commit which would not be possible if we used this tool. 
+For simplicity, we are going to build our prototype without this module and reconsider later.
+
+Future Plan:
+Next Week:
+Write code using JGit and test on different repositories to determine output format (Julius)
+Test different cases of refactorings and understand/parse the csv output of JPlag to make it usable (Evan and Sarah)
+Get Delta debugging working with Java code and try it out on some larger code bases (Conner and Jacob)
+Meet up to discuss connecting each of the tools we are looking into (Everyone)
