@@ -6,5 +6,5 @@ Time spent:
 Jacob Ward jward23:
 Evan Blajev eblajev:
 Sarah Zhou sarahsz:
-Julius Christenson juliusc:
+Julius Christenson juliusc: 2hours
 Conner Knight connerk:
