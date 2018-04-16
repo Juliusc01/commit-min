@@ -1,0 +1,19 @@
+Section 1 - Goals from a week ago:
+- Unfortunately, since MOSS runs on a remote server, we may need to look into a different tool to help us find refactors
+- Plan how we will store lines of code of interest for use in modules. Currently, one of my teammates is going to be using a test coverage tool that we've researched and when we meet on Tuesday, we will see how accurate this tool is
+Eventually, I will be making sure these lines of code are stored in modules.
+- Design how each module interacts with each other and with the system as a whole. Since we are looking at different tools currently, our next meeting will be to see how we can integrate these tools together in a way that works with our tool. I believe our entire group will have to collaborate on making sure each of the tools we are testing today can somehow fit together.
+- Build abstract algorithms to determine if lines of code are refactors of each other. I am going to dive into more research on refactoring tools today, and let my team know tomorrow. If we cannot find one, we may need to try to create a refactoring algorithm ourselves.
+
+Section 2 - Progress I've Made This Week:
+- I made the architecture diagram for our group's architecture assignment as well as helped with updating our project pitch
+- Started the slide deck for our presentation and helped fill out the content within the slides for slides 1-6
+- Continued to test JPlag, since last week I realized that MOSS runs on a remote server
+- Noticed that JPlag may only be useful for simple cases, so our team is now focusing on the cases where our user only refactors by placing code into methods, I will continue to look into how we may handle more complex cases
+- We met up with each other last Sunday to discuss how we would continue with the progress of our project and update each other on what we had accomplished
+
+Section 3 - Plans and Goals for the following Week:
+- Plan how we will store lines of code of interest for use in modules. Currently, one of my teammates is going to be using a test coverage tool that we've researched and when we meet on Tuesday, we will see how accurate this tool is
+Eventually, I will be making sure these lines of code are stored in modules.
+- Design how each module interacts with each other and with the system as a whole. Since we are looking at different tools currently, our next meeting will be to see how we can integrate these tools together in a way that works with our tool. I believe our entire group will have to collaborate on making sure each of the tools we are testing today can somehow fit together.
+- Look into the output of JPlag and see if it can be used for complex cases of refactoring
