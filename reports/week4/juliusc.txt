@@ -1,0 +1,20 @@
+Julius Christenson: juliusc
+
+Week 4 Individual Status Report
+
+Last Week’s Goals:
+Write code that uses JGit's library to get the diff between commits in a useable format.
+Write skeleton code for other parts of our algorithm
+
+Progress From This Week:
+For the majority of the week, I looked more into JGit to try and get some working code. Unfortunately, JGit was a little more confusing to
+work with than I had hoped. I spent some hours looking through JGit's API and user guide, and wrote some test code to use JGit but
+was unable to get it to work so far. I don't imagine it will take me too much longer to get the code to actually run, but I will just have
+to spend some more time on it. JGit it seems was primarily meant to be run on the command line, so information about it's actual java methods
+and how to use them seems a little bit scattered. Nonetheless, I'm confident that I can get it to work, but more time needs to be invested
+into figuring out JGit. The rest of the time this week was spent on working on updating the proposal and the individual assignment.
+
+Future Plan:
+Next Week:
+Finish code that uses JGit
+Update git repo to include java src folders and empty files.
