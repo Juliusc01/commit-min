@@ -3,7 +3,7 @@ https://docs.google.com/presentation/d/1s187n7-Nc8IiVh9BE5RRo-OBuXslvjMwejBFpwg1
 
 Time spent:
 
-Jacob Ward jward23:
+Jacob Ward jward23: 3 hours
 Evan Blajev eblajev:
 Sarah Zhou sarahsz:
 Julius Christenson juliusc: 2hours
