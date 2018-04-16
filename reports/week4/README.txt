@@ -7,4 +7,4 @@ Jacob Ward jward23: 3 hours
 Evan Blajev eblajev:
 Sarah Zhou sarahsz:
 Julius Christenson juliusc: 2hours
-Conner Knight connerk:
+Conner Knight connerk:3 hours
