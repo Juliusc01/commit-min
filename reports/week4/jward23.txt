@@ -1,0 +1,38 @@
+Week 4 Individual Status Report
+
+Last Week’s Goals:
+These are my individual goals from last week’s individual and team plan
+  -Evaluate jQAssistant test impact analysis plugin to see if it will work for us
+  -Build java code framework with our included tools
+  -Get Delta debugging working with Java code and try it out on some larger code bases
+
+Progress From This Week:
+Towards the beginning of the week I explored the jQAssistant test analysis plugin. 
+The plugin itself seems to work as advertised. However, to run the tool you had 
+to compile and run the whole system. This took minutes on a large codebase 
+which is far too inefficient for our purposes. This was disappointing to learn. 
+For now, we are going to sideline the impact analysis tool for our project and 
+maybe try to find a better option in the future if we have time. It would be 
+great if there was a static impact analysis tool, but I didn’t find one during 
+my brief search.
+
+I did not have time to build the java code framework with our tools. We met as a 
+team on Tuesday and decided it would be a better use of time to try and get the 
+debugging tool working on example code. The tool was designed to work on C and 
+C++ code so it was a challenge trying to get it to work with java code. I had to 
+modify the source code, but was able to get correct results!
+
+I am currently struggling to get the tool to work on multi-file systems however. 
+The tool does have a function called “multidelta” which is supposed to work for 
+multiple files, but the semantics are strange. I have started modifying the 
+source to try to get it to work, but have yet to get results yet. I do believe 
+it will work though with some modifications. Because of this, I was unable to 
+try the tool out on larger code bases. Once I get multidelta working though I 
+plan on getting some large tests and examples running.
+
+Future Plan:
+Next Week:
+  -Modify multidelta to work for multiple java files
+  -Create a test file for delta that is able to execute JUnit tests
+  -Run multidelta on example code in large code bases
+
