@@ -1,0 +1,31 @@
+﻿Conner Knight: connerk
+Week 4 Status Report
+
+
+Last Week’s Goals:
+* Get a concrete refactor tool in place, and test it with several commits and see if it does a good job at detecting whether the commit was just a refactor.
+* In testing the refactor tool figure out how accurate it is, we don’t want to make the mistake of thinking something is a refactor when it’s a potential bug fix, so that is something we need to be worried about
+* Try to get a concrete test of the linked delta debugging tool, and analyze how feasible that will be for the project
+* If the delta debugging tool doesn't work as imagined figure out a new tool, or in the worst case figure out a way to write my own delta debugging tool
+
+
+Progress From This Week:
+
+
+This week was mostly spent on solo work, our team was having some difficulties with sicknesses and such and we weren't able to meet up too much to talk. I was trying to continue working on delta to get things to work and test how viable it could be. I was able to get C programs to minimize which was working well. I had some difficulties trying to get Java to work out, there was a problem we experienced where the java file was being output to a different name which made it difficult to run with the tests. So we had to fix that in the source code and that took a while to figure out.
+
+
+        We were able to get some basic Java programs minimized, which I think is a really good step in the right direction. I was fairly busy this week unfortunately and wasn’t able to try the tool out with bigger projects. I was only able to verify that smaller programs were being minimized correctly by looking at them and minimizing them by hand. It seems like this tool is going to be quite useful to us, and it’s going to be very important step in our process, so I’m glad that this tool was able to work for us. It will be important to try out the minimizations for medium-large scale projects to see how well this scales with increasing complexity. It will also be important to see how our runtime is speeding up as we increase the size of our commits, and try out tests that take a while to run, to see how long our tool takes in a variety of situations.
+
+
+Future Plan:
+Next Week:
+* Get delta working on larger projects and analyzing how effective it is at minimization by also minimizing that code by hand
+* Potentially start thinking of how we can incorporate this with JGit to run delta on code before the commit, and after the commit and record the difference as a potential bug fix
+* Try to use this on defect4j code and compare against their minimized version
+
+
+Long Term:
+* Consider any other possible algorithms that could speed up our tool beyond delta debugging
+* Potentially think about Dynamic Impact analysis for large commits or large databases, or potentially for tests that take a long time to run
+* Get a prototype that can test a refactoring + delta debugging on a git commit and see what our running time for that is, and how tight we can get the number of lines that fixed a bug
