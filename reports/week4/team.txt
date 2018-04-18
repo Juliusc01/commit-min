@@ -10,16 +10,24 @@ Get Delta debugging working with Java code and try it out on some larger code ba
 Meet up to discuss connecting each of the tools we are looking into (Everyone)
 
 Progress From This Week:
-The main goal of this week was to explore the tools we’ve discovered and experiment with how they work and how they will be able to be used in our project.
+The main goal of this week was to explore the tools we’ve discovered and experiment with how they work and how they will be able to be
+used in our project.
 
 One thing we did this week was we took a further look into JGit. JGit was the most promising thing we could find for getting git diffs
 in a usable format. While it has a user guide, it mostly aims towards explaining how to use JGit from the command line, 
-and the section on the Java API is more scarce, and without many usage examples. In a test class, written code to use the JGit API resulted in errors, and more work will need to be put in to it to get it working.
+and the section on the Java API is more scarce, and without many usage examples. In a test class, written code to use the JGit API 
+resulted in errors, and more work will need to be put in to it to get it working.
 
 This week we defined our goals for the refactoring module. We came to the conclusion that the the refactor detection will be focused
-on white space, comments, and variable renaming for our minimum viable product. Additionally, comparing the previous versions of files with their current versions can be done through git, and checking out the old versions. We manually determined this approach would work and are building a script to automate the process of fetching old versions of files for refactor comparison.
+on white space, comments, and variable renaming for our minimum viable product. Additionally, comparing the previous versions of files 
+with their current versions can be done through git, and checking out the old versions. We manually determined this approach would work 
+and are building a script to automate the process of fetching old versions of files for refactor comparison.
 
-Unfortunately we discovered that the test impact analysis tool we were planning on using will not work as it takes an incredibly long time to execute. We are considering other approaches for how we might be able to do impact analysis or test coverage analysis to reduce the input into delta debugging. We were able to get the tool delta to produce accurate results on very small test cases using java programs. The tool was designed to work with c code, but we were able to modify it to allow us to use java. We are currently having trouble getting it to work when multiple files are involved, but believe it can be done.
+Unfortunately we discovered that the test impact analysis tool we were planning on using will not work as it takes an incredibly long time 
+to execute. We are considering other approaches for how we might be able to do impact analysis or test coverage analysis to reduce the 
+input into delta debugging. We were able to get the tool delta to produce accurate results on very small test cases using java programs. 
+The tool was designed to work with c code, but we were able to modify it to allow us to use java. We are currently having trouble getting 
+it to work when multiple files are involved, but believe it can be done.
 
 Future Plan:
 Next Week:
