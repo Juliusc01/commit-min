@@ -1,0 +1,15 @@
+Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+Week 3 Status Report
+
+Last Week’s Goals:
+Write code using JGit and test on different repositories to determine output format (Julius)
+Test different cases of refactorings and understand/parse the csv output of JPlag to make it usable (Evan and Sarah)
+Get Delta debugging working with Java code and try it out on some larger code bases (Conner and Jacob)
+Meet up to discuss connecting each of the tools we are looking into (Everyone)
+
+Progress From This Week:
+
+
+Future Plan:
+Next Week:
