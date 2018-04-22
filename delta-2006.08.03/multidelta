@@ -112,7 +112,8 @@ for $fn (@files) {
       run("cpp -P ${fn}.bak | $topformflat $level >$fn");
   } else {
       diagnostic("flattening $fn");
-      run("$topformflat $level <${fn}.bak >$fn");
+      #don't run topformflat, doesn't appear to work with java
+      #run("$topformflat $level <${fn}.bak >$fn");
   }
 }
 
