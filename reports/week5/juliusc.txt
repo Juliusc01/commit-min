@@ -1,0 +1,21 @@
+Julius Christenson: juliusc
+
+Week 5 Individual Status Report
+
+Last Week’s Goals:
+Finish code that uses JGit
+Update git repo to include java src folders and empty files.
+
+
+Progress From This Week:
+This week, I spent some more time messing with JGit. Frustrated with the time it was taking to perform what I thought would be a simple
+task, I looked for other solutions that didn't involve JGit. To my surprise, it turns out that using JGit was vastly overcomplicating
+what turned out to be a simple problem. I dove into git pre commit hooks, and looked more into the general git diff command and found
+that I could easily on commit output the changes of each file in whatever format I wanted, which then will be passed into our other tools.
+This turned out to be a simple problem that I was over complicating, due to lack of knowledge of git commands. I know have a working pre
+commit hook that I can edit to output the diffs in whatever format is needed.
+
+Future Plan:
+Next Week:
+Connect diff output to other tools
+Work on other tools to produce a working build
