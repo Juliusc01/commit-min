@@ -1,0 +1,14 @@
+Section 1 - Goals from a week ago:
+- Plan how we will store lines of code of interest for use in modules. Currently, one of my teammates is going to be using a test coverage tool that we've researched and when we meet on Tuesday, we will see how accurate this tool is
+Eventually, I will be making sure these lines of code are stored in modules.
+- Design how each module interacts with each other and with the system as a whole. Since we are looking at different tools currently, our next meeting will be to see how we can integrate these tools together in a way that works with our tool. I believe our entire group will have to collaborate on making sure each of the tools we are testing today can somehow fit together.
+- Look into the output of JPlag and see if it can be used for complex cases of refactoring
+
+Section 2 - Progress I've Made This Week:
+- I started to plan out how to write the script to detect refactors on code, after our team meeting we have have concluded that even for simple cases of refactoring such as variable name changes, new comments, white space and new lines, JPlag will be useful to detect that these are not actual changes to the source code.
+- the idea of the script is that we will take in a list of the changed files, process that list by check-ing out the latest commit, and for each of the files passed in, copy that file into a new file so we can compare it with JPlag later. After copying those files, we will switch back into our current state, and run JPlag on the files. If the file has 100% similarity (only refactors are new comments, white space, new lines or variable name changes) we will output this list. From there, the delta debugging module can help figure out how to use the outputted list of files.
+- Our teammates have reported difficulty with test modules and has taken responsibility for that part of the project. I am now focused on making JPlag work for us, to detect potential refactors and working on a script with one of my teammates, Evan.
+
+Section 3 - Plans and Goals for the following Week:
+- Test the script to see how it runs
+- Connect output with other tools the group is working on
