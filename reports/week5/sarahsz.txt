@@ -5,7 +5,7 @@ Eventually, I will be making sure these lines of code are stored in modules.
 - Look into the output of JPlag and see if it can be used for complex cases of refactoring
 
 Section 2 - Progress I've Made This Week:
-- I started to plan out how to write the script to detect refactors on code, after our team meeting we have have concluded that even for simple cases of refactoring such as variable name changes, new comments, white space and new lines, JPlag will be useful to detect that these are not actual changes to the source code.
+- Started to write the script to detect refactors on code, after our team meeting we have have concluded that even for simple cases of refactoring such as variable name changes, new comments, white space and new lines, JPlag will be useful to detect that these are not actual changes to the source code.
 - the idea of the script is that we will take in a list of the changed files, process that list by check-ing out the latest commit, and for each of the files passed in, copy that file into a new file so we can compare it with JPlag later. After copying those files, we will switch back into our current state, and run JPlag on the files. If the file has 100% similarity (only refactors are new comments, white space, new lines or variable name changes) we will output this list. From there, the delta debugging module can help figure out how to use the outputted list of files.
 - Our teammates have reported difficulty with test modules and has taken responsibility for that part of the project. I am now focused on making JPlag work for us, to detect potential refactors and working on a script with one of my teammates, Evan.
 
