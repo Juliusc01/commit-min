@@ -1,0 +1,31 @@
+﻿Conner Knight: connerk
+Week 5 Status Report
+
+
+Last Week’s Goals:
+* Get delta working on larger projects and analyzing how effective it is at minimization by also minimizing that code by hand
+* Potentially start thinking of how we can incorporate this with JGit to run delta on code before the commit, and after the commit and record the difference as a potential bug fix
+* Try to use this on defect4j code and compare against their minimized version
+
+
+Progress From This Week:
+
+
+This week I encountered a lot of difficulties that I didn’t expect that prevented me from accomplishing all the things I wanted to get done. Scaling delta to bigger projects had a lot more complexities that I didn’t think of last week. One of the main problems I had to solve was how to get delta to run java tests instead of tests written in a bash script. Since requiring that the user of the tool writes all their tests in a bash script would be ridiculous, and would make the tool unusable. So I decided to try to use Junit, since a lot of projects use Junit, and it would enable me to get a usable output from the test that could be used for delta.
+
+
+In trying to implement this I encountered several problems with this strategy though. Trying to compile a test with just Junit did not seem to work well, since the tests for junit included many dependencies on other files from the rest of the project, which caused my project not to be able to compile. This wasn’t helped by the fact that I used a fairly large project (my cse331 project). After trying to get this to work for many hours I decided that we would probably need some sort of external tool like maven to build all the files necessary to get our test to compile and run. There was some pushback from my team as they did not want us to have to require that the project have maven, and so I spent more time trying to get Junit tests to compile. After working on it for a while I figured that the finagling it would take to get it to work, would be impossible to handle for every project so I decided we must use maven, which would give us an output that we would be able to use for delta. Unfortunately I haven't been able to test this out much, but this is what i’m hoping to get working this week
+
+
+
+
+Future Plan:
+Next Week:
+* See if Maven will work well to compile and run tests for delta as input
+* try out using this maven method on actual projects and get minimized files
+* incorporate delta with the tools my team members have been working on and get some kind of prototype running
+
+
+Long Term:
+* Consider any other possible algorithms that could speed up our tool beyond delta debugging
+* Potentially think about Dynamic Impact analysis for large commits or large databases, or potentially for tests that take a long time to run
