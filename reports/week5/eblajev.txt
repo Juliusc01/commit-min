@@ -1,0 +1,14 @@
+Evan Blajev: eblajev
+
+Week 5 Individual Status Report
+
+Last week's goals:
+recover from concussion
+
+This week's progress:
+Spent time understanding the type of refactor detection that our tool would need. Decided to move forward on variable renaming, white space and commenting as the three types of refactors our initial version of the tool would be able to detect. Also worked on creating a script to automate running JPlag, still in the works, but should be finished later today.
+
+Spent time discussing with other team members the interface that should exist for the refactoring tool as well as all the other subcomponents of our system.
+
+Future Plan:
+Link together the refactoring module to the delta debugging module, work on a script that can start the tool with one command.
