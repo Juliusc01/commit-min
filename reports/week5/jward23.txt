@@ -1,0 +1,40 @@
+Week 5 Individual Status Report
+
+Last Week’s Goals:
+These are my individual goals from last week’s individual and team plan
+-Modify multidelta to work for multiple java files
+-Create a test file for delta that is able to execute JUnit tests
+-Run multidelta on example code in large code bases
+
+Progress From This Week:
+Conner and I both worked on delta again this week. We decided to split up the 
+work a little, so he ended up working with JUnit or large code bases and I 
+worked on getting multidelta to work for multiple java files.
+
+Multidelta was originally designed for c code and uses a program called 
+topformflat to flatten the code. It turned I just needed to make sure this wasn’t 
+executed for java files. There was also an issue with java compilation which 
+resulted in using old class files to run the tests. This bug was quite confusing 
+and took a while to discover, but I was able to fix it by modifying the test file 
+to make sure old class files weren’t used. I was finally able to get multidelta 
+to minimize two java files that depend on each other, though I had to hardcode 
+some file names in the test to get it to work. In the next week I will work on 
+generalizing this so it can work on any files passed in.
+
+While I was working with delta this week, I was trying to find a program similar 
+to topformflat that would flatten java files. In my search, I ended up finding 
+another delta debugging tool called picireny that uses hierarchical delta 
+debugging and is built to work directly with java syntax. delta seems to be 
+somewhat slow even on small files, so I worry about it being very slow on large 
+files. We do plan on continuing forward with delta at least for our first 
+prototype, but I want to look into picireny to see if it would be a more efficient 
+solution.
+
+Future Plan:
+Next Week:
+-Combine work with Connor to have delta be able to minimize multiple files using the tests in a large codebase
+-Merge delta tool with other modules to get fully working prototype
+
+Long Term:
+-Consider picireny to replace delta for efficieny 
+
