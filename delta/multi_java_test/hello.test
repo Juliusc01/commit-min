@@ -1,0 +1,10 @@
+#!/bin/bash
+# -*-sh-*-
+rm -f -- HelloWorld.class Helper.class
+if javac HelloWorld.java Helper.java &> cmp_out; then
+  hw=$(java HelloWorld)
+    if [ "$hw" == "HelloWorld!" ]; then
+        exit 0;                 # Success.
+    fi
+fi
+exit 1;                         # Failure.

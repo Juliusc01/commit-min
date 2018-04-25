@@ -1,0 +1,10 @@
+#!/bin/bash
+# -*-sh-*-
+checkpath=\bitcoinj\core\src\main\java\org\bitcoinj\core
+if javac $checkpath\CheckpointManager.java &> cmp_out; then
+  hw=$(java -cp .:/usr/share/java/junit.jar org.junit.runner.JUnitCore CheckpointManagerTest)
+    if [ "$hw" == "HelloWorld!" ]; then
+        exit 0;                 # Success.
+    fi
+fi
+exit 1;                         # Failure.
