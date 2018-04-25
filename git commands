@@ -1,0 +1,5 @@
+git reset --hard HEAD^
+echo "Hi this is a test" >> README.md
+git add .
+git commit -m "TestCommitMessage"
+
