@@ -3,6 +3,7 @@ from subprocess import call
 from collections import deque
 import sys
 import signal
+import os
 
 def parse_diff():
   path_to_diffs = {}  # map from path to list of diff lines
@@ -39,8 +40,12 @@ def parse_diff():
 def run_multidelta(path_to_diffs):
   # takes a set, and concats into space seperated string
   files = ' '.join(str(path) for path in path_to_diffs.keys())
-  multi = '~/multidelta'
-  test_script = '~/commit-min/delta/mvn.test'
+
+  # gets the directory this script is in, should be commit-min
+  script_dir = os.path.dirname(os.path.realpath(__file__)) 
+
+  multi = script_dir + '/delta/multidelta'
+  test_script = script_dir + '/delta/mvn.test'
   unit_test = '-unit_test=' + str(sys.argv[1])
 
   run_delta = ' '.join([multi, unit_test, test_script, files])
