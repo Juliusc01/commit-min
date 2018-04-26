@@ -9,3 +9,4 @@ python:
 # command to run tests
 script:
   - python pytest # or py.test for Python versions 3.5 and below
+  - python pytest
