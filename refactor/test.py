@@ -1,6 +1,8 @@
 import os
 import commands
 import refactor
+import sys
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
 
@@ -27,11 +29,11 @@ os.chdir(script_dir)
 refactor.func('tests/src/files.txt', 'tests/src/Data-Structures')
 # s = 'python refactor.py tests/src/files.txt tests/src/Data-Structures'
 # os.system(s)
-
-# result = commands.getoutput('wc -c output_file.txt')
-
-# print result
-
-#Data-Structures/src/DataStructures.java
 c = 'rm -rf ' + script_dir + '/tests'
 os.system(c)
+
+result = commands.getoutput('wc -l < output_file.txt')
+if (result == '0'):
+    sys.exit(-1)
+
+#Data-Structures/src/DataStructures.java
