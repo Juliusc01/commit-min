@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from subprocess import call
+from collections import deque
 import sys
 import signal
 
@@ -43,8 +44,56 @@ def run_multidelta(path_to_diffs):
   unit_test = '-unit_test=' + str(sys.argv[1])
 
   run_delta = ' '.join([multi, unit_test, test_script, files])
-  print run_delta
-  #call(run_delta)
+  call(run_delta, shell=True)
+
+def find_reverts(path_to_diffs):
+  path_to_reverts = {}
+  reverts = deque([])  # keep reverts in a queue
+  for path, diffs in path_to_diffs.iteritems():
+    curr_file_str = open(path).read()
+
+    # loop through diffs to see if they are still in file
+    for diff in diffs:
+      if diff.startswith("+"):
+        diff = diff[1:]  # remove + from diff and search in file
+        if diff not in curr_file_str:
+          reverts.append(diff)
+
+    path_to_reverts[path] = reverts
+
+  return path_to_reverts
+
+def revert_changes(path_to_reverts):
+  for path, reverts in path_to_reverts.iteritems():
+    curr_revert = None
+
+    # no need to read the file if there is nothing to revert
+    if reverts:
+      curr_revert = reverts.popleft()
+    else:
+      continue
+
+    # read from the backup file before delta ran
+    backup_file = open(path + ".bak", "r")
+    backup_file_lines = backup_file.readlines()
+    new_lines = []
+
+    # do not include any reverts in new_lines
+    for line in backup_file_lines:
+      if curr_revert in line:
+        if reverts:
+          curr_revert = reverts.popleft()
+      else:
+        new_lines.append(line)
+
+    if reverts:
+      sys.exit('There should not be anything left in reverts queue')
+
+    # write the new lines to the original file
+    orig_file = open(path, "w")
+    orig_file.writelines(new_lines)
+    orig_file.close()
+    curr_file.close()
 
 def interrupt_handler():
   # do something to kill multidelta and clean up files
@@ -53,6 +102,8 @@ def interrupt_handler():
 def main():
   path_to_diffs = parse_diff() 
   run_multidelta(path_to_diffs)
+  path_to_reverts = find_reverts(path_to_diffs)
+  revert_changes(path_to_reverts)
 
 if __name__ == '__main__':
   signal.signal(signal.SIGINT, interrupt_handler)
