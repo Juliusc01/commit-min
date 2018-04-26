@@ -1,6 +1,7 @@
 #!/user/bin/python
 
 def main():
+    testParseDiff()
 
 def testParseDiff():
     diffFile = open("../tmp/fullDiff.txt")
@@ -8,8 +9,8 @@ def testParseDiff():
     ls = readDiff.read().splitlines()
     for l in ls:
         diffFile.write(l)
-    }
-    parseDiff()
+    actual = parseDiff()
+    print actual
 
 
 if __name__ == '__main__':
