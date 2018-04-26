@@ -2,7 +2,7 @@ from subprocess import call
 
 def main():
    dict1 = {}
-   myFile = open("files.txt")
+   myFile = open("fullDiff.txt")
    lines = myFile.readlines();
    myList = []
    singleFile = None
