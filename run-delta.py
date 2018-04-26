@@ -35,22 +35,24 @@ def parse_diff():
 
   return path_to_diffs
 
-def main():
-  path_to_diffs = parse_diff() 
-
+def run_multidelta(path_to_diffs):
   # takes a set, and concats into space seperated string
-  print path_to_diffs
   files = ' '.join(str(path) for path in path_to_diffs.keys())
   multi = '~/multidelta'
   test_script = '~/commit-min/delta/mvn.test'
   unit_test = '-unit_test=' + str(sys.argv[1])
-  run_delta = multi + ' ' + unit_test + ' ' + test_script + ' ' + files
-  #call(run_delta)
+
+  run_delta = ' '.join([multi, unit_test, test_script, files])
   print run_delta
+  #call(run_delta)
 
 def interrupt_handler():
   # do something to kill multidelta and clean up files
   sys.exit(0)
+
+def main():
+  path_to_diffs = parse_diff() 
+  run_multidelta(path_to_diffs)
 
 if __name__ == '__main__':
   signal.signal(signal.SIGINT, interrupt_handler)
