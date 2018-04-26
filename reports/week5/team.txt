@@ -35,3 +35,8 @@ Next Week:
 Long Term:
 * do large scale tests to analyze accuracy, precision and runtime of our tool for larger projects of varying commit sizes
 * consider using something other then maven for delta to get a faster running time by only recompiling the files that need to be recompiled.
+
+Agenda:
+Discuss possibilities of speeding up our delta
+talk about where we should go after finishing our integration
+discuss travis
