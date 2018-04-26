@@ -32,7 +32,7 @@ refactor.func('tests/src/files.txt', 'tests/src/Data-Structures')
 c = 'rm -rf ' + script_dir + '/tests'
 os.system(c)
 
-result = commands.getoutput('wc -l < output_file.txt')
+result = commands.getoutput('wc -c < output_file.txt')
 if (result != '0'):
     sys.exit(-1)
 
