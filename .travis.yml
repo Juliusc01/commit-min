@@ -8,4 +8,4 @@ python:
 #  - sudo apt-get install gcc-4.8 -y
 # command to run tests
 script:
-  - pytest # or py.test for Python versions 3.5 and below
+  - python pytest # or py.test for Python versions 3.5 and below
