@@ -25,11 +25,12 @@ echo "Welcome to Commit-min, do you want to minimize your commit? Pass in flags 
         * ) echo "Please answer yes or no.";;
     esac
 done
-echo "Please enter the name of the test to run Commit-min with"
+echo "Please enter the name of the test to run Commit-min with (TestFileName#testName)"
 read testname
 #Run refactor tool here
 #exec rm files.txt
 git diff --cached $against --unified=0 -- >> fullDiff.txt
 git diff --cached $against --name-only -- >> files.txt
 #exec 1>&2
-python run-delta.py $testname
+python ~/commit-min/run-delta.py $testname
+
