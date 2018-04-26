@@ -29,6 +29,7 @@ echo "Please enter the name of the test to run Commit-min with"
 read testname
 #Run refactor tool here
 #exec rm files.txt
-git diff --cached $against --unified=0 -- >> files.txt
+git diff --cached $against --unified=0 -- >> fullDiff.txt
+git diff --cached $against --name-only -- >> files.txt
 #exec 1>&2
 python run-delta.py $testname

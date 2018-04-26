@@ -3,7 +3,7 @@ from subprocess import call
 
 def main():
   dict1 = {}
-  myFile = open("files.txt")
+  myFile = open("fullDiff.txt")
   lines = myFile.readlines()
   myList = []
   singleFile = None
@@ -33,7 +33,7 @@ def main():
   test_script = '~/commit-min/delta/mvn.test'
   run_delta = multi + ' ' + test_script + ' ' + files
   #call(run_delta, shell=True)
-  print files
+  print run_delta
 
 if __name__ == '__main__':
   main()
