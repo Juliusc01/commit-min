@@ -1,0 +1,12 @@
+diff --git a/README.md b/README.md
+index 6589762..5d3d06f 100644
+--- a/README.md
++++ b/README.md
+@@ -15,0 +16 @@ Free to use and be modified, if you find any bugs feel free to comment and contr
++Hi this is a test
+diff --git a/src/DataStructures.java b/src/DataStructures.java
+index f4afa4c..87ce433 100644
+--- a/src/DataStructures.java
++++ b/src/DataStructures.java
+@@ -25,0 +26 @@ public class DataStructures {
++This is a test

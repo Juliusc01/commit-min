@@ -3,7 +3,7 @@ import sys
 import linecache
 #/homes/iws/eblajev/Downloads/exercise1/eblajev/simpledb
 files = sys.argv[1]
-path_to_files = sys.argv[2]
+#path_to_files = sys.argv[2]
 
 cur_folder = os.getcwd()
 
@@ -21,13 +21,13 @@ new_file_path = cur_folder +"/tmp/cur/"
 old_file_path = cur_folder +"/tmp/old/"
 tmp_path = cur_folder + "/tmp"
 # copy new files into cur folder
-os.chdir(path_to_files)
+#os.chdir(path_to_files)
 for file in fileList:
     c = 'cp ' + file + ' ' + new_file_path
     os.system(c)
 
 os.system('git stash --include-untracked')
-os.chdir(path_to_files)
+#os.chdir(path_to_files)
 for file in fileList:
     c = 'cp ' + file + ' ' + old_file_path
     os.system(c)

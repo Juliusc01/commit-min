@@ -18,9 +18,9 @@ f.close()
 
 os.chdir(script_dir + '/tests/src')
 
-os.system('echo "ArrayBasedStack.java" > files.txt')
+os.system('echo "/tests/src/Data-Structures/src/Stack/ArrayBasedStack.java" > files.txt')
 os.chdir(script_dir)
-s = 'python refactor.py tests/src/files.txt {0}/tests/src/Data-Structures/src/Stack'.format(script_dir)
+s = 'python refactor.py tests/src/files.txt'.format(script_dir)
 os.system(s)
 
 result = commands.getoutput('wc -c output_file.txt')
