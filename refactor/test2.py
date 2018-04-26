@@ -1,8 +1,11 @@
 import os
 import commands
 import refactor
-os.system('rm -rf tests')
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(script_dir)
+
+os.system('rm -rf tests')
 os.system('mkdir tests && cd tests && mkdir src')
 os.chdir('tests/src')
 os.system('git clone https://github.com/Dilraj-Singh-Devgun/Data-Structures.git')

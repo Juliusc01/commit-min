@@ -5,11 +5,10 @@ import linecache
 def func(files, repo):
     # files = sys.argv[1]
     # repo = sys.argv[2]
-    print repo
     #path_to_files = sys.argv[2]
 
     script_dir = os.path.dirname(os.path.realpath(__file__))
-
+    os.chdir(script_dir)
     if '.txt' not in files:
         raise Exception('Pass in a text file')
 
@@ -84,3 +83,5 @@ def func(files, repo):
             outputfile.write(output[i])
     outputfile.close()
 
+    c = 'rm -rf ' + script_dir + '/results tmp'
+    os.system(c)   

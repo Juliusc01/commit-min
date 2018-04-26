@@ -2,6 +2,8 @@ import os
 import commands
 import refactor
 script_dir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(script_dir)
+
 os.system('rm -rf tests')
 os.system('mkdir tests && cd tests && mkdir src')
 os.chdir('tests/src')
@@ -31,3 +33,5 @@ refactor.func('tests/src/files.txt', 'tests/src/Data-Structures')
 # print result
 
 #Data-Structures/src/DataStructures.java
+c = 'rm -rf ' + script_dir + '/tests'
+os.system(c)
