@@ -29,8 +29,14 @@ echo "Please enter the name of the test to run Commit-min with (TestFileName#tes
 read testname
 #Run refactor tool here
 #exec rm files.txt
+repo_path=git rev-parse --show-toplevel  # get the repo root dir
+$repo_path > /tmp/fullDiff.txt
 git diff --cached $against --unified=0 -- >> fullDiff.txt
 git diff --cached $against --name-only -- >> files.txt
 #exec 1>&2
 python ~/commit-min/run-delta.py $testname
+
+# don't want to commit quite yet, non zero prevents this
+echo "Not committing!"
+exit 1
 
