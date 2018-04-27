@@ -34,6 +34,7 @@ The minimized file is now in place of the previous file that the test ran on, an
 
 The full test example (insert correct path):
 git clone https://github.com/Juliusc01/commit-min ; git clone https://github.com/jaleum/hellogitworld ; cd commit-min ; ./commit-min-install /INSERTPATHHERE/hellogitworld/ ; cd .. ; cd hellogitworld/ ; echo "//this is a comment" >> src/main/java/com/github/App.java ; git add . ; git commit -m "This is a test commit" 
+
 Type y, then type AppTest#testApp
 
 Now, go into hellogitworld/src/main/java/com/github/
