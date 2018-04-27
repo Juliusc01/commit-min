@@ -9,7 +9,7 @@ First, download the repository by running:
 git clone https://github.com/Juliusc01/commit-min
 
 If you want a test repo to try this on:
-git clone https://github.com/githubtraining/hellogitworld
+git clone https://github.com/jaleum/hellogitworld
 
 Then, to install our program, go into the commit-min directory (cd commit-min) and run:
 
