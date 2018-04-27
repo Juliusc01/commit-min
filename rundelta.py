@@ -5,13 +5,13 @@ import sys
 import signal
 import os
 
-def parse_diff():
+def parse_diff(full_path):
   path_to_diffs = {}  # map from path to list of diff lines
   diffs = []
   path = None
   has_changes = False
 
-  diff_file = open("/tmp/fullDiff.txt")
+  diff_file = open(full_path)
   lines = diff_file.read().splitlines()
   root_repo = lines.pop(0)  # path to the root of the repo
 
@@ -105,7 +105,7 @@ def interrupt_handler():
   sys.exit(0)
 
 def main():
-  path_to_diffs = parse_diff() 
+  path_to_diffs = parse_diff("/tmp/fullDiff.txt") 
   run_multidelta(path_to_diffs)
   #path_to_reverts = find_reverts(path_to_diffs)
   #revert_changes(path_to_reverts)
