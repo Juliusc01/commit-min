@@ -1,0 +1,20 @@
+diff --git b/apples.txt
+Lorem ipsum dolor sit amet
+consectetur adipiscing elit.
++++ b/apples.txt
+scribble floors
+Quisque non tempor ante
++ pick apples from tree
++ put apples in basket
++ put basket in car
+diff stuff and stuff
+Cras justo turpis, consequat nec mauris at
+malesuada molestie tortor.
+diff --git b/pear.java
++++ b/pear.java
++ String s6 = x + y + "total";
++ String s7 = "total " + x + y;
++ String s8 = " " + x + y + "total";
++ System.out.println("s6: " + s6);
++ System.out.println("s7: " + s7);
++ System.out.println("s8: " + s8);
