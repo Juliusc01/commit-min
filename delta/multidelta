@@ -97,7 +97,7 @@ if ($undo) {
 }
 
 
-diagnostic("verify the script passes now");
+diagnostic("verify the script passes");
 if (simpleRun($script) != 0) {
   die "Initial test fails\n";
 }
@@ -108,25 +108,6 @@ if (simpleRun($script) != 0) {
 for $fn (@files) {
   diagnostic("making a backup copy of $fn");
   run("cp -f $fn ${fn}.bak");
-
-  if ($cpp) {
-      diagnostic("preprocessing and flattening $fn");
-      # -P: don't emit #line directives
-      run("cpp -P ${fn}.bak | $topformflat $level >$fn");
-  } else {
-      diagnostic("flattening $fn");
-      #don't run topformflat, doesn't appear to work with java
-      #run("$topformflat $level <${fn}.bak >$fn");
-  }
-}
-
-diagnostic("verify still passes script");
-if (simpleRun($script) != 0) {
-  $actions = "topformflat";
-  if ($cpp) {
-    $actions = "cpp and " . $actions;
-  }
-  die "Test fails after $actions\n";
 }
 
 # one by one, apply delta
