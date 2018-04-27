@@ -22,12 +22,7 @@ To run our program, make some changes in the git repo, run git add, and try to c
 (First make sure you are in the repo, if you are using our test repo run :cd .. ; cd hellogitworld/)
 For example, in our test repo:
 
-echo "hi" >> README.txt
-
-git add .
-
-git commit -m "This is a test commit"
-
+echo "hi" >> README.txt ; git add . ; git commit -m "This is a test commit"
 
 Now, when you try to commit, our script will be run.
 Type "y" to continue, then type the name of a test you want to run our program against.
