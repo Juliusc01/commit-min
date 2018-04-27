@@ -10,4 +10,4 @@ python:
 script:
   - python refactor/test.py # or py.test for Python versions 3.5 and below
     #  - python pytest
-  - python run-deltaTests
+  - python run-deltaTests.py
