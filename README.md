@@ -1,7 +1,10 @@
 Welcome to commit-min!
 
 Our user manual is located at the top level of the repository, called User Manual.pdf
+
 Travis CI info here: https://travis-ci.org/Juliusc01/commit-min/builds
+
+To run the tests: ./runtests
 
 Instructions to run:
 
@@ -13,7 +16,7 @@ git clone https://github.com/jaleum/hellogitworld
 
 Then, to install our program, go into the commit-min directory (cd commit-min) and run:
 
-./commit-min-install /Full/Path/To/My/Repo/
+./commit-min-install /Full/Path/To/My/Test/Repo/
 If you are using the test repo:
 
 ./commit-min-install /ReplaceWithYourPath/hellogitworld/
