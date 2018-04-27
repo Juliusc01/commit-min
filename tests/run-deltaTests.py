@@ -1,7 +1,7 @@
 #!/user/bin/python
 import sys
-sys.path.append('../run-delta.py')
-from run-delta.py import parse_diff()
+sys.path.append('../')
+from run-delta.py import parse_diff 
 
 def main():
     testParseDiff()
