@@ -29,10 +29,12 @@ Type "y" to continue, then type the name of a test you want to run our program a
 For the test repo, try 
 AppTest#testApp
 
-commit-min will run on this test, and output the minimized file with respect to the test, getting rid of any unnecessary lines.
+Commit-min will run on this test, and output the minimized file with respect to the test, getting rid of any unnecessary lines.
+The minimized file is now in place of the previous file that the test ran on, and the .bak file is the old one. NOTE that this does not yet commit for you, but it gives the minimized file ready to be committed!
 
 The full test example (insert correct path):
 git clone https://github.com/Juliusc01/commit-min ; git clone https://github.com/jaleum/hellogitworld ; cd commit-min ; ./commit-min-install /INSERTPATHHERE/hellogitworld/ ; cd .. ; cd hellogitworld/ ; echo "//this is a comment" >> src/main/java/com/github/App.java ; git add . ; git commit -m "This is a test commit" 
 Type y, then type AppTest#testApp
 
-Check the log file in hellogitworld/ to see the results
+Now, go into hellogitworld/src/main/java/com/github/
+App.java is the new minimized file (note the lack of comment!), and App.java.bak is the old file (note the comment)
