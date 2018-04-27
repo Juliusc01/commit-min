@@ -4,7 +4,8 @@
 from rundelta import parse_diff
 
 def main():
-    return testParseDiff()
+    if not testParseDiff():
+        return sys.exit()
 
 def testParseDiff():
     diffFile = open("tests/actualDiff.txt","r+")
