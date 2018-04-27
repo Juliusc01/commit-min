@@ -9,7 +9,7 @@ First, download the repository by running:
 git clone https://github.com/Juliusc01/commit-min
 
 If you want a test repo to try this on:
-git clone https://github.com/jaleum/hellogitworld.git
+git clone https://github.com/jaleum/hellogitworld
 
 Then, to install our program, go into the commit-min directory (cd commit-min) and run:
 
@@ -22,13 +22,17 @@ To run our program, make some changes in the git repo, run git add, and try to c
 (First make sure you are in the repo, if you are using our test repo run :cd .. ; cd hellogitworld/)
 For example, in our test repo:
 
-echo "hi" >> README.txt ; git add . ; git commit -m "This is a test commit"
+echo "//this is a comment" >> src/main/java/com/github/App.java ; git add . ; git commit -m "This is a test commit"
 
 Now, when you try to commit, our script will be run.
 Type "y" to continue, then type the name of a test you want to run our program against.
 For the test repo, try 
 AppTest#testApp
 
-commit-min will run on this test, and:
+commit-min will run on this test, and output the minimized file with respect to the test, getting rid of any unnecessary lines.
 
-INSERT END BEHAVIOR HERE
+The full test example (insert correct path):
+git clone https://github.com/Juliusc01/commit-min ; git clone https://github.com/jaleum/hellogitworld ; cd commit-min ; ./commit-min-install /INSERTPATHHERE/hellogitworld/ ; cd .. ; cd hellogitworld/ ; echo "//this is a comment" >> src/main/java/com/github/App.java ; git add . ; git commit -m "This is a test commit" 
+Type y, then type AppTest#testApp
+
+Check the log file in hellogitworld/ to see the results
