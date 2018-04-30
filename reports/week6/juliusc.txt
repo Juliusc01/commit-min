@@ -1,6 +1,6 @@
 Julius Christenson: juliusc
 
-Week 5 Individual Status Report
+Week 6 Individual Status Report
 
 Last Week’s Goals:
 Connect diff output to other tools
