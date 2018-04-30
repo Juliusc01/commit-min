@@ -1,0 +1,32 @@
+﻿Conner Knight: connerk
+Week 5 Status Report
+
+
+Last Week’s Goals:
+* See if Maven will work well to compile and run tests for delta as input
+* try out using this maven method on actual projects and get minimized files
+* incorporate delta with the tools my team members have been working on and get some kind of prototype running
+
+
+Progress From This Week:
+
+
+We got a lot done this week in the form of getting a solid working prototype for our tool. This was a big step that I didn’t think we would be making this early in the project, and allows us to now focus on getting it polished, and working on all the extra features, and possible optimizations for our different stages. Along with Jacob I was able to get a working version of delta that used the maven build tool. We incorporated this with the git pre-commit hooks to create a prototype for our tool. I helped work on incorporating these two things together, as well putting together tests for them.
+
+
+In our beginning prototype we have only implemented the ability for the person to one test at a time, and do not have any sort of automatic feature yet. Unfortunately we are finding that our tool can take a very long time to find a bug, because of how long the maven build takes. This may be something that we will not be able to get around and will have to be a part of our tool. Currently we are not able to handle large changes for multiple lines, but I intend to work on fixing that this week. We were also having some difficulties commiting that change that we made, and currently just add it into their directory, which is something that we will have to fix this week.
+
+
+We need to work on incorporating our refactoring stage into our prototype and testing it, which is going to take some work. We should also consider adding back in impact analysis for our code, since the runtime of our tool is so long that this method could now become viable again. We will also be looking at possible other delta debugging tools that may be better optimized for build systems, but we have searched and not found any so far.
+
+
+
+
+
+
+Future Plan:
+Next Week:
+* add refactoring to the prototype
+* add more features to prototype like automatic bug fixing
+* add a test suite to delta and the prototype
+* Look into adding backing impact analysis
