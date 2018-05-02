@@ -107,8 +107,8 @@ def interrupt_handler():
 def main():
   path_to_diffs = parse_diff("/tmp/fullDiff.txt") 
   run_multidelta(path_to_diffs)
-  #path_to_reverts = find_reverts(path_to_diffs)
-  #revert_changes(path_to_reverts)
+  path_to_reverts = find_reverts(path_to_diffs)
+  revert_changes(path_to_reverts)
 
 if __name__ == '__main__':
   signal.signal(signal.SIGINT, interrupt_handler)
