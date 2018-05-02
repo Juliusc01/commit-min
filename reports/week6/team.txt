@@ -1,0 +1,36 @@
+﻿Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+
+Week 6 Status Report
+
+
+Last Week’s Goals:
+* Integrate all of our tools together to get some sort of usable prototype
+* Try to figure out ways to optimize delta using maven
+* Add additional testing to our tools, including special cases and think about how to solve things that delta will have difficulty handling(like deleted/modified lines)
+
+
+Progress From This Week:
+This week we worked to integrate our tools. The main part we wanted to get working was getting delta to work with a command line user interface. We wrote a script that is triggered by a user commiting from their repo. This script looks at the diff for the users repo and minimizes the diff by removing lines that are deemed unimportant based on some passed in test. We do not yet commit the newly minimized files, nor do we output to the user what we’ve done. Our next steps might be to work more on getting it to commit those changes for the user. Overall getting bash scripts to work for our project was difficult and tedious, so we decided to use python for most of our scripts. This also enabled us to build tests easier which should ensure better quality and less bugs in the long run.
+
+
+We also started making a test suite for all stages of our tool, including integration tests for the user interface and tests that make sure we properly transfer the needed information between our tools. We set up travis as well to ensure that our product would pass with continuous integration testing. We have a lot more to do with testing, and ensuring that our user input part is able to get the correct information out of the git diff. We currently are having some problems with multi-line commits that we have to deal with. Although the maven build tool is very slow it has made it a bit easier to run the users tests, and simplified what we need to input for delta.
+
+
+Future Plan:
+Next Week:
+* Integrate our tool with JPlag script that detects refactoring
+* Fix bugs in our user command line interface - ensure it works for all commits
+* Start testing for our tool on various repos - defect4j
+* Work on commiting our output to the user’s repo and showing the user the output for our tool.
+
+
+Long Term:
+* Do large scale tests to analyze accuracy, precision and runtime of our tool for larger projects of varying commit sizes
+* Consider using something other then maven for delta to get a faster running time by only recompiling the files that need to be recompiled.
+
+
+Agenda:
+1. Discuss how we can deal with deleted lines, and modified lines in our program
+2. Talk about possible other tools we should possibly be considering for speeding up
+3. Discuss testing and what sort of repos we should use and how we should get started, and possible things to record, and how we might do that accurately.
