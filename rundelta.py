@@ -100,6 +100,45 @@ def revert_changes(path_to_reverts):
     orig_file.close()
     backup_file.close()
 
+def print_new_changes(full_path, path_to_reverts):
+  path_to_diffs = {}  # map from path to list of diff lines
+  diffs = []
+  path = None
+  has_changes = False
+  new_lines = []
+  diff_file = open(full_path)
+  lines = diff_file.read().splitlines()
+  root_repo = lines.pop(0)  # path to the root of the repo
+  # loop over lines, adding diffs to map
+  for line in lines:
+    new_lines.append(line)
+    if(line.startswith("+++")):
+      has_changes = True
+      path = root_repo + line[5:]
+      #print(path)
+      #print(path_to_reverts)
+    # + and - and the beginning of a line signifies a change
+    elif((line.startswith("+") or line.startswith("-")) and has_changes):
+      if(path_to_reverts.get(path).popleft() == line[1:]):
+        new_lines.remove(line)
+        new_lines.append("this line has been removed from the commit: " + line[1:])
+      
+	
+    # check if this is a new file
+    if(line.startswith("diff") and has_changes):
+      path_to_diffs[path] = diffs
+      diffs = []
+      path = None
+      has_changes = False
+
+  path_to_diffs[path] = diffs
+  for line in new_lines:
+    print line
+  #new_file = open("/tmp/diffChanged.txt", "w")
+  #new_file.writelines(new_lines)
+  #new_file.close()
+  diff_file.close()
+
 def interrupt_handler():
   # do something to kill multidelta and clean up files
   sys.exit(0)
@@ -108,6 +147,7 @@ def main():
   path_to_diffs = parse_diff("/tmp/fullDiff.txt") 
   run_multidelta(path_to_diffs)
   path_to_reverts = find_reverts(path_to_diffs)
+  print_new_changes("/tmp/diffWithContext.txt", path_to_reverts)
   revert_changes(path_to_reverts)
 
 if __name__ == '__main__':
