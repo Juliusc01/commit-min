@@ -1,0 +1,10 @@
+#!/user/bin/python
+import sys
+
+def main():
+    #sys.exit("fail")
+    return False
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,42 @@
+﻿Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+
+Week 5 Status Report
+
+
+Last Week’s Goals:
+* Modify multidelta to work with java files and run on larger code base (Jacob, Conner)
+* Finish writing code to get diffs using JGit’s API (Julius)
+* Integrate JGit with multidelta (Julius, Jacob)
+* Turn output from JPlag into something usable for our tool (Sarah, Evan)
+* Find ways to optimize delta in the files it examines(Conner)
+
+
+Progress From This Week:
+We managed to write a script to get JPlag to work for our program to detect simple refactoring. 
+
+
+We went through a lot of changes for the tools we were using this week. We decided to not use Jgit because we found it was not necessary for getting the input we need for our delta tool. We found that we could do everything we needed to do for our project with git commands. Since with git we are able to get the changed files from before and after the commit.
+
+
+For the delta debugging tool we came across problems trying to use real testing files, and attempted to use Junit to try to run these tests for the delta input. Trying this we found that there were too many dependencies in any normal testing file that would make it very difficult to use Junit. We decided to use a build system maven to run our tests, since this would handle all the dependencies for us. Unfortunately, just running a maven on a test takes quite a long time, which was concerning to us since we will have to use mvn to run the test many times for delta. We tried some optimizations using the surefire plugin to not have to compile all the tests and files it depends on, but then we found that wouldn’t work because we need to recompile the file of interest, because we are changing that file for delta. We also b
+
+
+We started developing a command line interface for the user, and started to work on incorporating all of our tools together to make some kind of prototype. We will continue to work on this through next week. 
+
+
+Future Plan:
+Next Week:
+* integrate all of our tools together to get some sort of usable prototype
+* try to figure out ways to optimize delta using maven
+* add additional testing to our tools, including special cases and think about how to solve things that delta will have difficulty handling(like deleted/modified lines)
+
+
+Long Term:
+* do large scale tests to analyze accuracy, precision and runtime of our tool for larger projects of varying commit sizes
+* consider using something other then maven for delta to get a faster running time by only recompiling the files that need to be recompiled.
+
+Agenda:
+Discuss possibilities of speeding up our delta
+talk about where we should go after finishing our integration
+discuss travis

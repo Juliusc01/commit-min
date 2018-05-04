@@ -1,0 +1,7 @@
+git reset --hard HEAD^
+echo "Hi this is a test" >> README.md
+cd src
+echo "This is a test" >> DataStructures.java
+cd ..
+git add .
+git commit -m "TestCommitMessage"

@@ -1,0 +1,24 @@
+Evan Blajev: eblajev
+
+Week 6 Individual Report
+
+Last week's goals:
+Spent time understanding the type of refactor detection that our tool would need.
+Decided to move forward on variable renaming, white space and commenting as the three
+types of refactors our initial version of the tool would be able to detect. Also worked
+on creating a script to automate running JPlag, still in the works, but should be finished later today.
+
+This week's progress:
+
+Finished creating the script that executed Jplag. Changed the interface for how other modules communicate with my script.
+They need to pass in the path for every file that has been modified. Worked with Julius to make sure his module, that created git status information,
+could produce the correct output so it could be passed into my script.
+
+Discussed pros and cons of using Generic as language type in Travis CI as well as if the tests should be python based or if we
+should use a library called bats-core and write bash tests. We settled on python tests.
+
+Wrote unit tests for Jplag script and verified they passed on Travis CI.
+
+Future Plan:
+
+Continue writing tests for Jplag as well as look into performance improvements for Delta since it is running slow.

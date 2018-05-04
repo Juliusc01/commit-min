@@ -1,0 +1,36 @@
+#!/bin/sh
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+exec < /dev/tty
+while true; do
+echo "Welcome to Commit-min, do you want to minimize your commit? Pass in flags if needed (Y/N)"
+    read yn
+    case $yn in
+        [Yy]* ) echo "Starting Commit-min"; break;;
+        [Nn]* ) echo "Okay, exiting Commit-min"; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+echo "Please enter the name of the test to run Commit-min with (TestFileName#testName)"
+read testname
+#Run refactor tool here
+#exec rm files.txt
+repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
+echo "$repo_path" > /tmp/fullDiff.txt
+echo "$repo_path" > /tmp/diffWithContext.txt
+git diff --cached $against --unified=0 -- >> /tmp/fullDiff.txt
+git diff --cached $against -- >> /tmp/diffWithContext.txt
+git diff --cached $against --name-only -- >> /tmp/files.txt
+#exec 1>&2
+python $commitmin/rundelta.py $testname
+
+# don't want to commit quite yet, non zero prevents this
+echo "Not committing!"
+exit 1
+

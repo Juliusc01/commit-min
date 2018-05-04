@@ -1,0 +1,47 @@
+Week 6 Individual Status Report
+
+Last Week’s Goals:
+These are my individual goals from last week’s individual and team plan
+-Combine work with Connor to have delta be able to minimize multiple files using 
+the tests in a large codebase
+-Merge delta tool with other modules to get fully working prototype
+
+Progress From This Week:
+This week I continued to work with delta, but specifically focused on how our 
+tool will call delta and use the results from its execution. I wrote a script 
+that is called from our main script that takes a git diff, calls delta with the 
+proper parameters, and then uses the diff to modify the desired files if a 
+change was deemed significant. Julius helped by creating the function to parse 
+the git diff. This script is not fully complete yet as it simply modifies the 
+desired files without keeping track of what it is modifying or telling the user 
+what it is doing. Also at the moment our tool is ignoring removed lines and not 
+trying to add them back and we are not considering if a modification to a line 
+was needed. We aren’t sure how to handle these cases at the moment. This week I 
+will work on extending its output so users can see the important changes.
+
+I tried running the tool on a codebase called bitcoinj 
+(https://github.com/bitcoinj/bitcoinj) which contains roughly 90k lines of code. 
+I discovered that the only way to run a unit test for the project was running 
+“mvn clean test -Dtest=TestFile#testName”. It would be quite difficult to run
+just the JUnit test because the project relies on external jars which are bundled 
+with maven. Also, maven handles the re-compilation of necessary files when delta 
+is editing the file. The clean is needed because when java tries to compile an 
+empty file, it will not remove the old compiled version which means the test will 
+just use the old class file which is not what we want. It could be possible to 
+get around this, but regardless the whole process took a minute to execute. Since 
+delta runs the tests dozens of times, this is a major bottleneck for our tool. 
+Even on incredibly small projects “mvn clean test” would take 5 seconds which 
+would lead to a couple minute runtime. I’m not sure really what to do about this, 
+but it seems clear that our tool would not be practical to be used on every commit.
+
+We were able to integrate delta with the pre-commit hook and the user input. I 
+wrote an install script that would put our hook into a repo that the user specified 
+and that hook would trigger our tool and delta to execute on commit. At the moment, 
+our tool is relying on where our repo is cloned on the user’s machine which is 
+not ideal. I would like to potentially package our tool with python so the user 
+doesn’t even need to clone our repo to use our tool.
+
+Future Plan:
+Next Week:
+-Add output to delta script for user to see changes.
+-Experiment with using picireny to replace delta

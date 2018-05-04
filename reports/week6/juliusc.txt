@@ -1,0 +1,18 @@
+Julius Christenson: juliusc
+
+Week 6 Individual Status Report
+
+Last Week’s Goals:
+Connect diff output to other tools
+Work on other tools to produce a working build
+
+
+Progress From This Week:
+This week, I finished up the pre commit script to with the other tools in our project. I edited the pre commit script to output
+in a format that our other tools could use, and then changed run-delta to correctly interpereted the output of the pre commit script
+I also wrote the detailed instructions for how to use our tool, as well as testing it.
+
+Future Plan:
+Next Week:
+Assess feedback, improve tool and reports
+Work on commiting the minimized file

@@ -1,0 +1,26 @@
+#!/bin/sh
+if [ "$#" -ne 1 ]; then
+  echo "Please only pass in path to your repo"
+  exit
+fi
+
+# get commit-min repo path and add to pre-commit
+repo_path="$(git rev-parse --show-toplevel)"
+cp pre-commit tmp-pre-commit
+sed -i "2i commitmin='$repo_path'" tmp-pre-commit
+
+hook_path="$1.git/hooks/pre-commit"  # path to 
+
+# don't include shebang is the hook exists
+if [ -f $hook_path ]; then
+  tail -n +2 tmp-pre-commit >> $hook_path
+else
+  cat tmp-pre-commit > $hook_path
+  chmod +x $hook_path
+fi
+
+rm tmp-pre-commit
+
+# this is always true, need to handle bad path
+echo "Commit-min was successfully installed in your repo!"
+echo "Execute simply by commiting"

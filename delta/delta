@@ -57,6 +57,7 @@ my $test;                       # The script to run as the test.
 my $in_place = 0;
 my $start_file;                 # name of input/output file for in_place
 my $file_name;
+my $unit_test;
 
 my $help_message = <<"END"
 
@@ -131,7 +132,7 @@ sub test {
     else {
       # for in_place, the test program is free to ignore the argument
       # (since it will be known ahead of time) but I'll pass it anyway
-      $ret = system "$test $start_file";
+      $ret = system "$test $unit_test";  # changed so test accepts unit test
       $input = $start_file;
     }
 
@@ -268,6 +269,8 @@ sub parse_command_line {
                 $in_place = 1;
             } elsif ($flag eq "name") {
               $file_name = $argument;
+            } elsif ($flag eq "unit_test") {
+              $unit_test = $argument;
             } else {die "Illegal flag: $flag \n"}
         } else {push @non_flags, $str;}
     }

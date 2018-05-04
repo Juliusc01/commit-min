@@ -1,0 +1,13 @@
+Section 1 - Goals from a week ago:
+- Test the script to see how it runs
+- Connect output with other tools the group is working on
+
+
+Section 2 - Progress I've Made This Week:
+- Finished writing the script to detect refactors on code, after our team meeting we have have concluded that even for simple cases of refactoring such as variable name changes, new comments, white space and new lines, JPlag will be useful to detect that these are not actual changes to the source code.
+- The script I worked on takes in a list of the changed files, processes that list by check-ing out the latest commit, and for each of the files passed in, copies that file into a new file so we can compare it with JPlag later. After copying those files, we will switch back into our current state, and run JPlag on the files. If the file only refactors are new comments, white space, new lines or variable name changes we will output this for our next tool of delta debugging
+- Wrote tests for the script that detects refactors as well as communicated in helping connecting the tools together with other team member's tools. We currently have a tool working, but delta debugging is still slow
+
+Section 3 - Plans and Goals for the following Week:
+- Continue testing, perhaps find better ways to detect refactors
+- Meet up to brainstorm ways to make our tool quicker
