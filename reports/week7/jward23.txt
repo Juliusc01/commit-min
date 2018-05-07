@@ -1,0 +1,32 @@
+Week 7 Individual Status Report
+
+Last Week’s Goals:
+These are my individual goals from last week’s individual and team plan
+-Add output to delta script for user to see changes.
+-Experiment with using picireny to replace delta
+
+Progress From This Week:
+This week I was not particularly productive on our project due to work from other
+classes. We did meet as a team and I led a discussion on how we want the output
+of our tool to look. We decided it would be nice for the user to see which lines
+of code was removed and where the context around where they were removed from.
+However, Julius did the implementation of this. I provided him with a map of
+the changes with the path and the change, and he created the output for the user.
+
+I did not experiment with picireny this week, instead I asked Connor if he could
+look into it. I decided that even though our tool is slow, our priority should
+shift towards evaluation. Once we have evaluation figured out, we can go back to
+optimizing our tool to make it more usable.
+
+I did set up my environment and download defects4j. This week I will be digging
+into the provided projects, look at the different bug fixes, and try running our
+tool on different commits. By Thursday we are expected to have initial evaluation
+results, so I’ll be helping write the script that executes our tool on multiple
+commits.
+
+
+Future Plan:
+Next Week:
+-Run commit-min on commits in dejects4j and fix any apparent bugs
+-Write script which will run our tool on some given number of commits
+
