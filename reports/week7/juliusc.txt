@@ -1,0 +1,19 @@
+Julius Christenson: juliusc
+
+Week 7 Individual Status Report
+
+Last Week’s Goals:
+Assess feedback, improve tool and reports
+Work on commiting the minimized file
+
+
+Progress From This Week:
+This week, I edited the pre commit script to print out the new diff that would then be committed first, the one that solely fixes the bug.
+It shows what the diff was previously, and indicates which lines have now been removed from the commit. I also started to research what 
+would need to be done in order to commit the bug fix seperately, then commit the other changes. git stash looks like it will work in that
+respect. I also worked on editing the report document, and updating the readme to include a better and more interesting testt.
+
+Future Plan:
+Next Week:
+Get our program to run automatically on defects4j
+
