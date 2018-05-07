@@ -1,0 +1,22 @@
+Evan Blajev: eblajev
+
+Week 7: Report
+
+Last week's goal:
+
+Finished creating the script that executed Jplag. Changed the interface for how other modules communicate with my script.
+They need to pass in the path for every file that has been modified. Worked with Julius to make sure his module, that created git status information,
+could produce the correct output so it could be passed into my script.
+
+Discussed pros and cons of using Generic as language type in Travis CI as well as if the tests should be python based or if we
+should use a library called bats-core and write bash tests. We settled on python tests.
+
+Wrote unit tests for Jplag script and verified they passed on Travis CI.
+
+This week:
+
+Working on evaluation and writing scripts to test commit-min with defects4J
+
+Future Plan:
+
+Automate evaluation scripts
