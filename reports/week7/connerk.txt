@@ -1,0 +1,31 @@
+﻿Conner Knight: connerk
+Week 7 Status Report
+
+
+Last Week’s Goals:
+* add refactoring to the prototype
+* add more features to prototype like automatic bug fixing
+* add a test suite to delta and the prototype
+* Look into adding backing impact analysis 
+
+
+Progress From This Week:
+
+
+This week I spent a lot of time discussing with my group about the feasibility of many of the features that we had planned for our tool. We found that there were going to be some limitations to our tool as far as detecting deleted lines, seeing as with the tool we’re using for delta debugging it is looking like it’s going to be impossible to detect bug fixes from deleting lines. This is because our tool works from files not diffs, and so we can’t isolate the bug fix by removing lines, since removing lines was how the bug was fixed. My team thinks that adding impact analysis back in would be too much work, and that we should focus on other things, so I am shelving that idea.
+
+
+We also decided against doing automatic bug fixing for now, since we figured since our tool is too slow, and trying to run the whole test suite with it would take way too long. If we find some way to speed up our tool we might add it back in, but right now it doesn’t seem too important to us. I have been working on some tests for the whole process as well to make sure everything is working as intended.
+
+
+This week is going to probably be quite a bit of work for me and our whole team. We need to start running our initial results for the experiments we said we were going to run. We decided to use the defects4j, which seems like it will be a great asset since it nicely has provided minimized commits to fix bugs, so we were going to compare how our tool does at minimizing a bug fix by looking at that commit plus some extra ones, and we want to see how close our tools bug fix isolation gets to the hand made minimized version.
+
+
+
+
+Future Plan:
+Next Week:
+* run experiments to see how accurate our tool is in minimizing bug fixes using the defects4j repo on several different projects, and different sized commits
+* run those same experiments analyzing how precise our tool is
+* run those same experiments analyzing how long our tool takes
+* Look into picireny
