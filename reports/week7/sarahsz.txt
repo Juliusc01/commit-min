@@ -1,0 +1,19 @@
+Sarah Zhou, sarahsz Individual Report
+
+Section 1: Goals from a week ago:
+
+- Continue testing, perhaps find better ways to detect refactors
+- Meet up to brainstorm ways to make our tool quicker
+
+Section 2: Progress I've Made This Week:
+
+- Our group met as a team to discuss how we wanted the output of our tool to look like. After discussing, we finalized the decision to let the user see which lines were removed by our tool, making our tool a bit more user-friendly, and allowing them to view the changes before commiting 
+- Additionally, me and my teammate Evan are planning to meet up to integrate the refactor tool in with our current tool. Currently the script input and output is set up to work with Julius's user interface side and Connor and Jacob's delta debugging
+- Wrote tests for Travis CI to ensure the refactor tool meets it's requirements
+- For this week, our goal is to set up defects4j and use that to look  at different bug fixes. We will be using our tool to run on several commits. I will be working on writing tests that run our tool on these commits.  
+
+Section 3: Goals for next week:
+
+- Continue testing with defects4j
+- Make sure the refactor tool has been successfully integrated
+
