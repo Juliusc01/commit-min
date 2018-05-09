@@ -1,0 +1,32 @@
+Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+Week 7 Status Report
+
+Last Week’s Goals:
+Integrate our tool with JPlag script that detects refactoring
+Fix bugs in our user command line interface - ensure it works for all commits
+Start testing for our tool on various repos - defect4j
+Work on committing our output to the user’s repo and showing the user the output for our tool.
+
+Progress From This Week:
+Our group met as a team to discuss how we wanted the output of our tool to look like. After discussing, we finalized the decision to let the user see which lines were removed by our tool. This way, we are allowing our tool to be more user-friendly, and allowing users to view the changes before commiting. This was then implemented, and the user can now see what lines were removed from the bug fix to be committed.
+
+We started working with the defects4j repo that we decided to run our experiments on. We decided it would be best to use just this repo since it contained multiple projects, with many different sized commits. We discovered some difficulties in trying to work with it since we need to manually find the commit in the original project and use that for our tool, then compare that to the manually minimized version of it given in the defects4j repo. We decided since we need to manually do this that doing tests on just 5 commits might be reasonable to start. We also need to add to our code the ability to change how we build the test, since the defects4j repo requires that you use their build tool, so we will need to add functionality to allow that.
+
+
+Future Plan:
+Next Week:
+* Do large scale tests to analyze accuracy, precision and runtime of our tool for larger projects of varying commit sizes
+* Possibly add functionality to our tool to allow for different build systems
+Allow the user to complete these tests and produce the output themselves
+
+Long Term:
+* Consider using something other then maven for delta to get a faster running time by only recompiling the files that need to be recompiled.
+
+Agenda:
+* Discuss how we can deal with deleted lines, and modified lines in our program
+* Talk about possible other tools we should possibly be considering for speeding up
+* Discuss Defects4j, and problems with it
+
+
+
