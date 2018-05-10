@@ -43,3 +43,5 @@ Type y, then type AppTest#testApp
 
 Now, go into hellogitworld/src/main/java/com/github/
 App.java is the new minimized file (note the lack of comment!), and App.java.bak is the old file (note the comment)
+
+Instructions for how to run the experiments are located in the experiments directory in the Readme.txt file
