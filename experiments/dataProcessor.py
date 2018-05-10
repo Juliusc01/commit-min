@@ -44,7 +44,7 @@ def main():
         "layout": Layout(title="Accuracy Graph",
                           xaxis=dict(title='commit size'),
                           yaxis=dict(title='accuracy', range=[0,1.05]))
-    })
+    },filename='accuracyGraph.html', auto_open=False)
 
     plotly.offline.plot({
         "data": [Scatter
@@ -52,14 +52,14 @@ def main():
         "layout": Layout(title="Precision Graph",
                          xaxis=dict(title='commit size'),
                          yaxis=dict(title='precision', range=[0, 1.05]))
-    })
+    },filename='precisionGraph.html', auto_open=False)
 
     #data = [accTrace]
     #py.iplot(data, filename='scatter-mode')
 
 
-    print("accuracy", accsList[1])
-    print("precision", precsList[1])
+    #print("accuracy", accsList[1])
+    #print("precision", precsList[1])
 
     '''
     plotly.offline.plot({
