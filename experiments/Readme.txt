@@ -1,5 +1,5 @@
 To create graphs through dataProcessor must first install plotly
-can be done by either
+which must be done through pip which can be done by either
 $ pip install plotly
 or 
 $ sudo pip install plotly
