@@ -21,6 +21,6 @@ fi
 
 rm tmp-pre-commit
 
-# this is always true, need to handle bad path
+# TODO: this is always true, need to handle bad path
 echo "Commit-min was successfully installed in your repo!"
 echo "Execute simply by commiting"
