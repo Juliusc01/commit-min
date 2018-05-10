@@ -1,0 +1,33 @@
+#!/bin/sh
+projects=(Math)
+numbugs=$1
+
+for project in ${projects[@]}; do
+  projectpath=~/defects4j/framework/projects/$project/
+  bugs=($(head -$numbugs "$projectpath"commit-db))
+  for bug in ${bugs[@]}; do
+    bugsplit=($(echo "$bug" | tr ',' '\n'))
+    bugnum=${bugsplit[0]}
+    buggyid=${bugsplit[1]}
+    fixedid=${bugsplit[2]}
+    repo=/tmp/$project-$bugnum
+
+    srctestpath=($(grep "$fixedid" "$projectpath"dir_map.csv | tr ',' '\n'))
+    srcpath=${srctestpath[1]}
+
+    defects4j checkout -p $project -v "$bugnum"f -w $repo
+    cd $repo
+    echo "$repo" > /tmp/fullDiff.txt
+    echo "$repo" > /tmp/diffWithContext.txt
+    git diff $buggyid $fixedid --unified=0 -- $srcpath >> /tmp/fullDiff.txt
+    git diff $buggyid $fixedid -- $srcpath >> /tmp/diffWithContext.txt
+    git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
+
+    python ~/commit-min/rundelta.py blah
+
+    #rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt
+    #rm -rf $repo
+  done
+done
+
+

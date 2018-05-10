@@ -1,0 +1,8 @@
+#!/bin/bash
+# -*-sh-*-
+grep_string="Failing tests: 0"
+if ant clean && defects4j compile && defects4j test -r | grep "$grep_string" > /dev/null; then
+  exit 0;  # Success
+fi
+exit 1;  # Failure
+
