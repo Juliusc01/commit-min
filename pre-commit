@@ -26,7 +26,7 @@ echo "$repo_path" > /tmp/fullDiff.txt
 echo "$repo_path" > /tmp/diffWithContext.txt
 git diff --cached $against --unified=0 -- >> /tmp/fullDiff.txt
 git diff --cached $against -- >> /tmp/diffWithContext.txt
-git diff --cached $against --name-only -- >> /tmp/files.txt
+git diff --cached $against --name-only -- > /tmp/files.txt
 #exec 1>&2
 python $commitmin/rundelta.py $testname
 
