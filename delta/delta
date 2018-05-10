@@ -2,6 +2,7 @@
 # delta; see License.txt for copyright and terms of use
 
 use strict;
+use IPC::Run qw( run timeout );
 
 # ****************
 # Implementation of the delta debugging algorithm:
@@ -58,6 +59,7 @@ my $in_place = 0;
 my $start_file;                 # name of input/output file for in_place
 my $file_name;
 my $unit_test;
+my $timeout;
 
 my $help_message = <<"END"
 
@@ -132,7 +134,17 @@ sub test {
     else {
       # for in_place, the test program is free to ignore the argument
       # (since it will be known ahead of time) but I'll pass it anyway
-      $ret = system "$test $unit_test";  # changed so test accepts unit test
+      my @cmd = ($test, $unit_test);
+      my $in;
+      my $err;
+      eval {
+        run \@cmd, \$in,\$ret,\$err, timeout($timeout, exception=>'timeout');
+      };
+
+      if ($@ =~ /timeout/) {
+        $ret = 0;
+      }
+
       $input = $start_file;
     }
 
@@ -271,6 +283,8 @@ sub parse_command_line {
               $file_name = $argument;
             } elsif ($flag eq "unit_test") {
               $unit_test = $argument;
+            } elsif ($flag eq "timeout") {
+              $timeout = $argument
             } else {die "Illegal flag: $flag \n"}
         } else {push @non_flags, $str;}
     }

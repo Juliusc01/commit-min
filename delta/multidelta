@@ -12,6 +12,7 @@
 
 use strict 'subs';
 use FindBin;
+use Time::HiRes qw ( time );
 
 $delta          = "$FindBin::Bin/delta";
 $topformflat    = "$FindBin::Bin/topformflat";
@@ -98,7 +99,11 @@ if ($undo) {
 
 
 diagnostic("verify the script passes");
-if (simpleRun($script) != 0) {
+my $starttime = time();
+my $ret = simpleRun($script);
+my $endtime = time();
+my $timeout = int($endtime - $starttime) * 2;
+if ($ret != 0) {
   die "Initial test fails\n";
 }
 
@@ -113,7 +118,7 @@ for $fn (@files) {
 # one by one, apply delta
 for $fn (@files) {
   diagnostic("applying delta to $fn");
-  run("$delta -in_place -test=$script -unit_test=$unit_test $fn");
+  run("$delta -in_place -test=$script -timeout=$timeout -unit_test=$unit_test $fn");
 
   if (-f "DELTA-STOP") {
     diagnostic("Stopping because DELTA-STOP exists");
