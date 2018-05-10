@@ -1,30 +1,37 @@
 #!/bin/sh
-projects=(Math)
-numbugs=$1
+projects=(Math Closure) # array of projects to test
+numbugs=$1  # pass in the number of bugs to test
 
 for project in ${projects[@]}; do
   projectpath=~/defects4j/framework/projects/$project/
-  bugs=($(head -$numbugs "$projectpath"commit-db))
+  bugs=($(head -$numbugs "$projectpath"commit-db))  # array of the top numbugs bugs
   for bug in ${bugs[@]}; do
+    # split up the bug line into it's componenets
     bugsplit=($(echo "$bug" | tr ',' '\n'))
     bugnum=${bugsplit[0]}
     buggyid=${bugsplit[1]}
     fixedid=${bugsplit[2]}
-    repo=/tmp/$project-$bugnum
 
+    # get the path to the source files for this project
     srctestpath=($(grep "$fixedid" "$projectpath"dir_map.csv | tr ',' '\n'))
     srcpath=${srctestpath[1]}
 
+    # checkout the repo for the bugnum
+    repo=/tmp/$project-$bugnum
     defects4j checkout -p $project -v "$bugnum"f -w $repo
     cd $repo
+
+    # create all the diffs
     echo "$repo" > /tmp/fullDiff.txt
     echo "$repo" > /tmp/diffWithContext.txt
     git diff $buggyid $fixedid --unified=0 -- $srcpath >> /tmp/fullDiff.txt
     git diff $buggyid $fixedid -- $srcpath >> /tmp/diffWithContext.txt
     git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
 
-    python ~/commit-min/rundelta.py blah
+    # run our tool. Normally you pass in a testname, but we don't need it here
+    python ~/commit-min/rundelta.py testname
 
+    # clean up
     #rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt
     #rm -rf $repo
   done
