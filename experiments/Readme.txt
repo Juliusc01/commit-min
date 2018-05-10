@@ -4,6 +4,12 @@ $ pip install plotly
 or 
 $ sudo pip install plotly
 
+steps to install pip and plotly together how i personally did it
+might be susceptable to malware I don't know
+
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py --user
+pip install plotly --user
 after this run
 python dataProcessor.py
 
