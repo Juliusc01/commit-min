@@ -1,3 +1,18 @@
+In order to get the data points you have to do the following.
+Setup defects4j as described here (Make sure to get your path set correctly, and source ~/.bash_profile if needed):
+
+https://github.com/rjust/defects4j
+
+Then, clone this repository:
+git clone https://github.com/Juliusc01/commit-min
+
+Go into the repository:
+cd commit-min
+
+And run ./evaluate 1 (Note this takes a long time)
+
+
+
 To create graphs through dataProcessor must first install plotly
 which must be done through pip which can be done by either
 
