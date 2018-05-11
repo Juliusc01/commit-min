@@ -106,11 +106,13 @@ def print_new_changes(full_path, path_to_reverts):
   path = None
   has_changes = False
   new_lines = []
+  other_lines = [] # for graph comparison
   diff_file = open(full_path)
   lines = diff_file.read().splitlines()
   root_repo = lines.pop(0)  # path to the root of the repo
   # loop over lines, adding diffs to map
   for line in lines:
+    other_lines.append(line)
     new_lines.append(line)
     if(line.startswith("+++")):
       has_changes = True
@@ -119,11 +121,11 @@ def print_new_changes(full_path, path_to_reverts):
       #print(path_to_reverts)
     # + and - and the beginning of a line signifies a change
     elif((line.startswith("+") or line.startswith("-")) and has_changes):
-      if(path_to_reverts.get(path).popleft() == line[1:]):
-        new_lines.remove(line)
-        new_lines.append("this line has been removed from the commit: " + line[1:])
-      
-	
+      if(path_to_reverts.get(path)):
+        if(path_to_reverts.get(path).popleft() == line[1:]):
+          new_lines.remove(line)
+          new_lines.append("this line has been removed from the commit: " + line[1:])
+
     # check if this is a new file
     if(line.startswith("diff") and has_changes):
       path_to_diffs[path] = diffs
@@ -134,9 +136,9 @@ def print_new_changes(full_path, path_to_reverts):
   path_to_diffs[path] = diffs
   for line in new_lines:
     print line
-  #new_file = open("/tmp/diffChanged.txt", "w")
-  #new_file.writelines(new_lines)
-  #new_file.close()
+  new_file = open("/tmp/diffOurs.txt", "w")
+  new_file.writelines(other_lines)
+  new_file.close()
   diff_file.close()
 
 def interrupt_handler():

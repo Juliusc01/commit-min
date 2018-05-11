@@ -30,7 +30,7 @@ for project in ${projects[@]}; do
 
     # run our tool. Normally you pass in a testname, but we don't need it here
     python ~/commit-min/rundelta.py testname
-
+    python ~/commit-min/diffMaker.py
     # clean up
     #rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt
     #rm -rf $repo
