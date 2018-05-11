@@ -64,8 +64,7 @@ def find_reverts(path_to_diffs):
         if diff not in curr_file_str:
           reverts.append(diff)
 
-    if len(reverts) > 0:
-      path_to_reverts[path] = reverts
+    path_to_reverts[path] = reverts
 
   return path_to_reverts
 
