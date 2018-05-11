@@ -143,6 +143,8 @@ sub test {
 
       if ($@ =~ /timeout/) {
         $ret = 0;
+      } else {
+        $ret = $?
       }
 
       $input = $start_file;
