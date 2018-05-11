@@ -17,8 +17,9 @@ def main():
     i = 0
     accsList = []
     precsList = []
+    timeList = []
     comList = []
-    while i < len(fileList) - 2 :
+    while i < len(fileList) - 3 :
         ourFile = open(fileList[i])
         expFile = open(fileList[i+1])
         rawOurOutput = ourFile.read().splitlines()
@@ -36,23 +37,32 @@ def main():
         accsList.append(accuracy)
         precsList.append(precision)
         comList.append(fileList[i+2])
-        i+= 3
+        timeList.append(fileList[i+3])
+        i += 4
 
     plotly.offline.plot({
        "data": [Scatter
             (x=comList, y=accsList)],
-        "layout": Layout(title="Accuracy Graph",
+        "layout": Layout(title="Commit size vs Accuracy Graph",
                           xaxis=dict(title='commit size'),
-                          yaxis=dict(title='accuracy', range=[0,1.05]))
+                          yaxis=dict(title='percent of bug fix lines found', range=[0,1.05]))
     },filename='accuracyGraph.html', auto_open=False)
 
     plotly.offline.plot({
         "data": [Scatter
                  (x=comList, y=precsList)],
-        "layout": Layout(title="Precision Graph",
+        "layout": Layout(title="Commit size vs Precision Graph",
                          xaxis=dict(title='commit size'),
-                         yaxis=dict(title='precision', range=[0, 1.05]))
+                         yaxis=dict(title='percent of tools bug fix lines valid(valid means line in expected)', range=[0, 1.05]))
     },filename='precisionGraph.html', auto_open=False)
+
+    plotly.offline.plot({
+        "data": [Scatter
+                 (x=comList, y=timeList)],
+        "layout": Layout(title="Commit size vs Time Graph",
+                         xaxis=dict(title='commit size'),
+                         yaxis=dict(title='time for tool to run(seconds)'))
+    }, filename='timeGraph.html', auto_open=False)
 
 
 
@@ -64,11 +74,19 @@ def main():
     },filename='accuracyTable.html', auto_open=False)
 
     plotly.offline.plot({
-        "data": [Table(header=dict(values=['Commit size', 'percent of bug fix lines valid(in expected)']),
+        "data": [Table(header=dict(values=['Commit size', 'percent of tools bug fix lines valid(valid means line in expected)']),
                        cells=dict(values=[comList,
                                           precsList]))],
         "layout": Layout(title="commit size vs precision")
     }, filename='precisionTable.html', auto_open=False)
+
+    plotly.offline.plot({
+        "data": [Table(
+            header=dict(values=['Commit size', 'time for tool to run(seconds)']),
+            cells=dict(values=[comList,
+                               timeList]))],
+        "layout": Layout(title="Commit size vs Time Graph")
+    }, filename='timeTable.html', auto_open=False)
 
     #data = [accTrace]
     #py.iplot(data, filename='scatter-mode')
