@@ -39,3 +39,19 @@ timeGraph.html
 precisionTable.html
 accuracyTable.html
 timeTable.html
+
+NOTE: The following section is how you would get our evaluation data, but 
+we never let it run long enough to finish so I wouldn't recommend trying to
+set it up.
+
+In order to run our evaluation script, you must install defects4j:
+https://github.com/rjust/defects4j
+
+From the commit-min repo, run:
+./evaluate 1
+
+The 1 signifies it will evaluate one bug fix. Our evaluate script was the ability
+to run on multiple projects as well as multiple bug fixes. Unfortunately, commit-min
+was still trying to minimize things after 3 hours of running, so we never got real
+results.
+
