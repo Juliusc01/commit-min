@@ -28,6 +28,10 @@ def print_new_changes(full_path, which_one):
   new_file.close()
   diff_file.close()
 
+def interrupt_handler():
+  # do something to kill multidelta and clean up files
+  sys.exit(0)
+  
 def main():
   path_to_diffs = parse_diff("/tmp/fullDiff.txt", 1)
   path_to_diffs = parse_diff("/tmp/diffOurs.txt", 2)
