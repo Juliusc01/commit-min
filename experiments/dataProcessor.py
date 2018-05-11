@@ -30,8 +30,8 @@ def main():
         accSet = expSet - outSet
         precSet = outSet - expSet
 
-        accuracy = (len(expSet) - len(accSet)) / (len(expSet))
-        precision = (len(outSet) - len(precSet)) / (len(outSet))
+        accuracy = float(len(expSet) - len(accSet)) / float(len(expSet))
+        precision = float(len(outSet) - len(precSet)) / float(len(outSet))
 
         accsList.append(accuracy)
         precsList.append(precision)
@@ -61,7 +61,14 @@ def main():
     cells=dict(values=[comList,
                        accsList]))],
         "layout": Layout(title="commit size vs accuracy")
-    })
+    },filename='accuracyTable.html', auto_open=False)
+
+    plotly.offline.plot({
+        "data": [Table(header=dict(values=['Commit size', 'percent of bug fix lines valid(in expected)']),
+                       cells=dict(values=[comList,
+                                          precsList]))],
+        "layout": Layout(title="commit size vs precision")
+    }, filename='precisionTable.html', auto_open=False)
 
     #data = [accTrace]
     #py.iplot(data, filename='scatter-mode')
