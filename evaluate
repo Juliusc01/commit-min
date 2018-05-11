@@ -32,9 +32,8 @@ for project in ${projects[@]}; do
     git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
 
     # run our tool. Normally you pass in a testname, but we don't need it here
-    cd $commitminpath
-    python rundelta.py testname defects4j.test
-    python diffMaker.py
+    python ${commitminpath}/rundelta.py testname defects4j.test
+    python ${commitminpath}/diffMaker.py
 
     # clean up
     #rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt
