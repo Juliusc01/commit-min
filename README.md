@@ -1,5 +1,7 @@
 Welcome to commit-min!
 
+Instructions for how to run the experiments are located in the experiments directory in the Readme.txt file
+
 Our user manual is located at the top level of the repository, called User Manual.pdf
 
 Travis CI info here: https://travis-ci.org/Juliusc01/commit-min/builds
@@ -52,4 +54,3 @@ Type y, then type AppTest#testApp
 Now, go into hellogitworld/src/main/java/com/github/
 App.java is the new minimized file (note the lack of comment!), and App.java.bak is the old file (note the comment)
 
-Instructions for how to run the experiments are located in the experiments directory in the Readme.txt file
