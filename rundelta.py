@@ -45,7 +45,7 @@ def run_multidelta(path_to_diffs):
   script_dir = os.path.dirname(os.path.realpath(__file__)) 
 
   multi = script_dir + '/delta/multidelta'
-  test_script = script_dir + '/delta/mvn.test'
+  test_script = script_dir + '/delta/' + str(sys.argv[2])
   unit_test = '-unit_test=' + str(sys.argv[1])
 
   run_delta = ' '.join([multi, unit_test, test_script, files])
