@@ -5,7 +5,7 @@ import sys
 import signal
 import os
 
-def print_new_changes(full_path, which_one):
+def parse_diff(full_path, which_one):
   has_changes = False
   new_lines = []
   diff_file = open(full_path)
