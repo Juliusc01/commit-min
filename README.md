@@ -35,9 +35,17 @@ AppTest#testApp
 Commit-min will run on this test, and output the minimized file with respect to the test, getting rid of any unnecessary lines.
 The minimized file is now in place of the previous file that the test ran on, and the .bak file is the old one. NOTE that this does not yet commit for you, but it gives the minimized file ready to be committed!
 
-The full test example (insert correct path):
+The full test example (insert correct path for INSERTPATHHERE , you should just put in what you get from pwd)
+note after the end of each $ line press enter
+for the cpan App:cpaniminus you must enter yes and sudo before moving on:
 
-git clone https://github.com/Juliusc01/commit-min ; git clone https://github.com/jaleum/hellogitworld ; cd commit-min ; ./commit-min-install /INSERTPATHHERE/hellogitworld/ ; cd .. ; cd hellogitworld/ ; echo "//this is a comment" >> src/main/java/com/github/App.java ; echo "//this is a second comment" >> src/main/java/com/github/App.java ; echo "this is a third comment" >> src/main/java/com/github/test.txt ; git add . ; git commit -m "This is a test commit"
+$git clone https://github.com/Juliusc01/commit-min ; git clone https://github.com/jaleum/hellogitworld ; cd commit-min
+
+$cpan App:cpanminus
+$sudo cpanm IPC::Run
+
+
+$./commit-min-install /INSERTPATHHERE/hellogitworld/ ; cd .. ; cd hellogitworld/ ; echo "//this is a comment" >> src/main/java/com/github/App.java ; echo "//this is a second comment" >> src/main/java/com/github/App.java ; echo "this is a third comment" >> src/main/java/com/github/test.txt ; git add . ; git commit -m "This is a test commit"
 
 Type y, then type AppTest#testApp
 
