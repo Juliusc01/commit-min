@@ -13,7 +13,6 @@ def parse_diff(full_path, which_one):
   root_repo = lines.pop(0)  # path to the root of the repo
   # loop over lines, adding diffs to map
   for line in lines:
-    new_lines.append(line)
     if(line.startswith("+++")):
       has_changes = True
     # + and - and the beginning of a line signifies a change
@@ -24,7 +23,8 @@ def parse_diff(full_path, which_one):
       has_changes = False
 
   new_file = open("/tmp/diff"+str(which_one)+".txt", "w")
-  new_file.writelines(new_lines)
+  for item in new_lines:
+    new_file.write("%s\n" % item)
   new_file.close()
   diff_file.close()
 
