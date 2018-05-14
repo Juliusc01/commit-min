@@ -1,0 +1,20 @@
+Julius Christenson: juliusc
+
+Week 7 Individual Status Report
+
+Last Week’s Goals:
+Get our program to run automatically on defects4j
+
+
+Progress From This Week:
+This tried to get our tool up and running and get some initial results. I worked with the output files of our tool (the diffs) and
+modified them, and set it up to be ready to be passed into the script in which we plot the data. I had to keep track of the changes we did,
+and compared it to the minimized file, so we could evaluate it. I tested this on many small commits, and it worked as expected.
+I re-wrote the read-me and to explain the changed results, and how to run the evaluation script. I worked on the initial results 
+part of the report, to clean it up. Since then, we've talked as a group on slack about how best to get our program to run faster, and talked
+about running it on diffs instead of whole files.
+
+Future Plan:
+Next Week:
+Get our program to run faster (on diff files?)
+Get actual initial results
