@@ -1,0 +1,35 @@
+Week 8 Individual Status Report
+
+Last Week's Goals:
+- Run commit-min on commits in dejects4j and fix any apparent bugs
+- Write script which will run our tool on some given number of commits
+
+Progress From This Week:
+This week I worked on getting commit-min to minimize commits from the defects4j
+repo. Installing and understanding defects4j was tricky, but I was able to
+figure it out well enough to use for our purposes. To make our tool work with
+defects4j, I created a new test script that calls the relevant defects4j commands
+I also write a script that takes some project names, some number of bugs and
+automatically calls our tool for each bug in the projects. This script is used
+to automate our evaluation process.
+
+Unfortunately, I discovered that our tool is much too slow to work on real
+projects. This is because the delta tool we are using runs on an entire file,
+trying to remove subsets of lines and test. This worked okay with 20 line files,
+but does not work for files with hundreds of lines. To combat this, we will
+modify delta to work over a diff instead of an entire file.
+
+I searched tools and processes that would help run delta debugging on diffs
+and came up with a possible solution. Calvin suggested running on the basis of
+hunks instead of lines. I looked into this and learned that running git diff
+essentially creates a patch file filled with multiple hunks of changes. I found
+a tool called splitpatch which takes the diff as input, and produces a diff file
+for each hunk in the original diff. We can then use delta to run over those diff
+hunk files and run 'git apply' to either apply or revert the changes in the file.
+One thing we will have to keep in mind though is how we will keep track of the
+number of lines removed in this case as it isn't quite as simple as when operating
+strictly with lines.
+
+Future Plan:
+- Modify delta to work with hunks from a diff instead of lines in a file
+- Run the evaluation script to get initial results.
