@@ -1,0 +1,15 @@
+Evan Blajev: eblajev
+
+Week 8: Report
+
+Last week's goal:
+
+Working on evaluation and writing scripts to test commit-min with defects4J
+
+This week:
+
+because of midterms for other classes I didn't get much done this week.
+
+Future Plan:
+
+Help speed up delta

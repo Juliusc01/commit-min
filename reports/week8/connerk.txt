@@ -1,0 +1,27 @@
+﻿Conner Knight: connerk
+Week 8 Status Report
+
+
+Last Week’s Goals:
+* run experiments to see how accurate our tool is in minimizing bug fixes using the defects4j repo on several different projects, and different sized commits
+* run those same experiments analyzing how precise our tool is
+* run those same experiments analyzing how long our tool takes
+* Look into picireny
+
+
+Progress From This Week:
+
+
+This week we spent a lot of time trying to get our experiments to run on our tool, but ran into a big issue concerning how long our tool was taking to work. I mostly worked on taking in the output for the tool and comparing it to the expected which was the defects4j tools minimization and from that get measurements for how accurate(% of lines in expected diff that are also in our tools diff ) and precise(% of lines in our tool’s diff that are also in the expected diff), and the time it took our tool to run. I would take measurements for several bug minimizations and turn them into tables and graphs for the following measurements described with the x-axis being the size of the commit. Unfortunately though we vastly underestimated how long our tool would take on longer commits, we spent 3 hours just waiting for one minimization and by that time we had to turn in our results and couldn’t show anything.
+
+
+We intend to make big changes based on this test on an actual bug fix. We need to really focus on reducing the time it takes for our tool to run. We had some ideas to do this like using picery, but the only real benefits to runtime would be that it can run in parallel, what we need is a big overhaul. So we decided that we are going to try to split the input into bigger chunks that we run the delta algorithm on, this should provide us with a faster runtime at the cost of accuracy for our bug fix minimization. But at this point our tool is so slow that it will probably not have much use for anyone unless we make this fix.
+
+
+
+
+Future Plan:
+Next Week:
+* Work on breaking input into chunks to reduce runtime
+* once we get that working run the experiments and analyze the results
+* think about possible ways to get delta to run on diffs rather then files

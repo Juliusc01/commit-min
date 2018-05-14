@@ -1,0 +1,18 @@
+Sarah Zhou
+sarahsz Individual Report
+
+Section 1: Goals from a week ago:
+
+- Continue testing with defects4j
+- Make sure the refactor tool has been successfully integrated
+
+Section 2: Progress I've Made This Week:
+
+- This week our focus was on setting up defects4j 
+- Many of our team members had difficulties running and working with defects4j, in addition to our delta debugging tool working extremely slowly, so much of our time was spent running the evaluation
+- I went ahead and corrected the feedback on the written initial-results-1.pdf, as well as work on the written part of the report. I have signed up to present on Monday. Since it was midterms week for me, I wasn't able to contribute as much as I would have liked. I am willing contribute more next week, with reducing the time it takes for our tool to run
+
+Section 3: Goals for next week:
+- Work on the presentation slides, and rehearse presenting with Julius
+- Try to get picireny set up
+
