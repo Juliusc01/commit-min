@@ -1,0 +1,42 @@
+Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+Week 8 Status Report
+
+Last Week’s Goals:
+Do large scale tests to analyze accuracy, precision and runtime of our tool for larger projects of varying commit sizes
+Possibly add functionality to our tool to allow for different build systems
+Allow the user to complete these tests and produce the output themselves
+
+Progress From This Week:
+
+We tried running our tool on large scale tests but ran into a problem with how long our tool was taking to run. 
+We waited 3 hours for our tool to finish, and ended up getting no results. 
+We did set up the capability for tables and graphs to be created given the diff from our tool and the expected diff, 
+which we can use to create accuracy, precision,and timing tables and graphs. We were not able to create these 
+tables in graphs though because our tool took too much time to run, this is because of the exponential nature of our delta tool, 
+which caused huge increases in runtime for our tool. We are prioritizing figuring how ways to fix this. 
+
+The main thing we are going to try to do is run delta based on the diff instead of on the entire file. 
+The diff will be in general by smaller than the whole file. We are also looking at decreasing the granularity to instead of looking 
+at adding and removing single lines from the file we chunk together lines, which we expect will reduce runtime quite a bit. 
+This will hopefully get us back on track, and enable us to get some experiments completed. 
+The tradeoff here will be accuracy since we are using chunks instead of lines so this will include a things that are not pertinent 
+to the bug fix.
+
+
+Future Plan:
+Next Week:
+Get delta to work on hunks of the diff instead of lines of the file
+Run evaluation on many projects in defects4j and get results
+Write tests for the delta debugging tool and integration tests for commit-min
+
+Long Term:
+Consider using something other then maven for delta to get a faster running time by only recompiling the files that need to be recompiled.
+
+Agenda:
+Talk about possible other tools we should possibly be considering for speeding up
+Discuss Defects4j, and problems with it
+	
+
+
+
