@@ -61,13 +61,14 @@ class Splitter
     end
 
     def getFilename(line)
+        # format looks like: diff --git some/path/file.java some/other/path/file.java
         tokens = line.split(" ")
-        tokens = tokens[1].split(":")
-        tokens = tokens[0].split("/")
+        tokens = tokens[2].split("/")
         if @fullname
             return tokens.join('-')
         else
-            return tokens[-1]
+            # it should always be this, which I guess gets the last element in the array
+            return tokens[-1] 
         end
     end
 
@@ -119,7 +120,7 @@ class Splitter
             line = stream.readline
 
             # we need to create a new file
-            if (line =~ /^Index: .*/) == 0
+            if (line =~ /^diff .*/) == 0
                 # patch includes Index lines
                 # drop into "legacy mode"
                 legacy = true
