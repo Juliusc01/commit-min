@@ -1,5 +1,5 @@
 #!/bin/sh
-projects=(Math) # array of projects to test
+projects=(Lang) # array of projects to test
 numbugs=$1  # pass in the number of bugs to test
 commitminpath=$(pwd)
 defects4jpath="$(which defects4j)"
@@ -27,7 +27,14 @@ for project in ${projects[@]}; do
     # create all the diffs
     echo "$repo" > /tmp/fullDiff.txt
     echo "$repo" > /tmp/diffWithContext.txt
+
+    # get the diff and split into one file per hunk
     git diff $buggyid $fixedid --unified=0 -- $srcpath >> /tmp/fullDiff.txt
+    mkdir -p /tmp/cmpatches
+    rm -rf /tmp/cmpatches/*
+    ${commitminpath}/splitpatch.rb -H /tmp/fullDiff.txt
+    mv *.patch /tmp/cmpatches
+
     git diff $buggyid $fixedid -- $srcpath >> /tmp/diffWithContext.txt
     git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
 

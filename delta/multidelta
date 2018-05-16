@@ -118,7 +118,7 @@ for $fn (@files) {
 # one by one, apply delta
 for $fn (@files) {
   diagnostic("applying delta to $fn");
-  run("$delta -in_place -test=$script -timeout=$timeout -unit_test=$unit_test $fn");
+  run("$delta -in_place -test=$script -granularity=hunk -timeout=$timeout -unit_test=$unit_test $fn");
 
   if (-f "DELTA-STOP") {
     diagnostic("Stopping because DELTA-STOP exists");

@@ -189,14 +189,35 @@ sub render_tmpinput {
       # an absolute path.
       open TMPINPUT, ">$start_file" or die $!;
       $tmpinput = $start_file;
+      # always start from original version of file
+      # not sure if this is working, would be nice to see output
+      if ($granularity eq "hunk") {
+        system("git checkout $start_file");
+      }
     }
     else {
       $tmpinput = unused_tempfile();
       open TMPINPUT, ">${tmpdir}/$tmpinput" or die $!;
     }
     foreach my $marker (@current_markers) {
-        for (my $i=$marker->{start}; $i<$marker->{stop}; ++$i) {
+        if ($granularity eq "hunk") {
+          # if we are using hunks, we want to revert everything not in the current
+          # markers. The current markers previously signified what lines of code
+          # should be used for this run, but now we will say they mean which hunks
+          # we should use. Since we are starting from a version with all hunks applied
+          # we must revert any hunk not included in current marker
+          for (my $i=0; $i<$marker->{start}; ++$i) {
+            # applies a patch file in reverse, essentially reverting hunk
+            system("patch -p1 -R --ignore-whitespace < $chunks[$i]");
+          }
+          for (my $i=$marker->{stop}; $i<=$#chunks; ++$i) {
+            system("patch -p1 -R --ignore-whitespace < $chunks[$i]");
+          }
+        } else {
+          # this was the original code
+          for (my $i=$marker->{start}; $i<$marker->{stop}; ++$i) {
             print TMPINPUT $chunks[$i];
+          }
         }
     }
     close TMPINPUT or die $!;   # NOTE: Leave $tmpinput defined.
@@ -268,7 +289,7 @@ sub parse_command_line {
             } elsif ($flag eq "quiet") {
                 $quiet++;
             } elsif ($flag eq "granularity") {
-                if ($argument eq "line" || $argument eq "top_form") {
+                if ($argument eq "line" || $argument eq "top_form" || $argument eq "hunk") {
                     $granularity = $argument;
                 }
             } elsif ($flag eq "cp_minimal") {
@@ -353,6 +374,12 @@ sub read_input_chunks {
         }
         $chunk .= $a;
         push @chunks, $chunk;
+    } elsif ($granularity eq "hunk") {
+      # this reads all the files in a directory and stores the filenames in chunks array
+      my $dir = "/tmp/cmpatches";
+      opendir DIR, $dir or die "Can't open dir $dir: $!";
+      @chunks = grep {!/^\./} readdir DIR;
+      closedir DIR;
     } else {die "Illegal granularity setting: $granularity\n"}
 }
 
