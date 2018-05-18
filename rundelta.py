@@ -47,8 +47,9 @@ def run_multidelta(path_to_diffs):
   multi = script_dir + '/delta/multidelta'
   test_script = script_dir + '/delta/' + str(sys.argv[2])
   unit_test = '-unit_test=' + str(sys.argv[1])
+  buggy_commit = '-bugid=' + str(sys.argv[3])
 
-  run_delta = ' '.join([multi, unit_test, test_script, files])
+  run_delta = ' '.join([multi, unit_test, buggy_commit, test_script, files])
   call(run_delta, shell=True)
 
 def find_reverts(path_to_diffs):
@@ -148,9 +149,9 @@ def interrupt_handler():
 def main():
   path_to_diffs = parse_diff("/tmp/fullDiff.txt") 
   run_multidelta(path_to_diffs)
-  path_to_reverts = find_reverts(path_to_diffs)
-  print_new_changes("/tmp/diffWithContext.txt", path_to_reverts)
-  revert_changes(path_to_reverts)
+  #path_to_reverts = find_reverts(path_to_diffs)
+  #print_new_changes("/tmp/diffWithContext.txt", path_to_reverts)
+  #revert_changes(path_to_reverts)
 
 if __name__ == '__main__':
   signal.signal(signal.SIGINT, interrupt_handler)

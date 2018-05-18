@@ -24,7 +24,7 @@ read testname
 repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
 echo "$repo_path" > /tmp/fullDiff.txt
 echo "$repo_path" > /tmp/diffWithContext.txt
-git diff --cached $against --unified=0 -- >> /tmp/fullDiff.txt
+git diff --cached $against -- >> /tmp/fullDiff.txt
 mkdir -p /tmp/cmpatches
 rm -rf /tmp/cmpatches/*
 ${commitmin}/splitpatch.rb -H /tmp/fullDiff.txt
@@ -33,7 +33,7 @@ mv *.patch /tmp/cmpatches
 git diff --cached $against -- >> /tmp/diffWithContext.txt
 git diff --cached $against --name-only -- > /tmp/files.txt
 #exec 1>&2
-python $commitmin/rundelta.py $testname mvn.test
+python $commitmin/rundelta.py $testname mvn.test $against
 
 # don't want to commit quite yet, non zero prevents this
 echo "Not committing!"

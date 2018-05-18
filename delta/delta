@@ -60,6 +60,7 @@ my $start_file;                 # name of input/output file for in_place
 my $file_name;
 my $unit_test;
 my $timeout;
+my $bugid;
 
 my $help_message = <<"END"
 
@@ -142,7 +143,7 @@ sub test {
       };
 
       if ($@ =~ /timeout/) {
-        $ret = 0;
+        $ret = 1 << 8;
       } else {
         $ret = $?
       }
@@ -187,40 +188,26 @@ sub render_tmpinput {
       # because in many places $tmpdir/ is prefixed (and I don't want
       # to say $tmpdir="." because I want $start_file to possibly be
       # an absolute path.
-      open TMPINPUT, ">$start_file" or die $!;
+      #open TMPINPUT, ">$start_file" or die $!;
       $tmpinput = $start_file;
       # always start from original version of file
-      # not sure if this is working, would be nice to see output
       if ($granularity eq "hunk") {
-        system("git checkout $start_file");
+        system("git checkout $bugid $start_file");
       }
     }
     else {
       $tmpinput = unused_tempfile();
-      open TMPINPUT, ">${tmpdir}/$tmpinput" or die $!;
+      #open TMPINPUT, ">${tmpdir}/$tmpinput" or die $!;
     }
     foreach my $marker (@current_markers) {
-        if ($granularity eq "hunk") {
-          # if we are using hunks, we want to revert everything not in the current
-          # markers. The current markers previously signified what lines of code
-          # should be used for this run, but now we will say they mean which hunks
-          # we should use. Since we are starting from a version with all hunks applied
-          # we must revert any hunk not included in current marker
-          for (my $i=0; $i<$marker->{start}; ++$i) {
-            # applies a patch file in reverse, essentially reverting hunk
-            system("patch -p1 -R --ignore-whitespace < $chunks[$i]");
-          }
-          for (my $i=$marker->{stop}; $i<=$#chunks; ++$i) {
-            system("patch -p1 -R --ignore-whitespace < $chunks[$i]");
-          }
-        } else {
-          # this was the original code
-          for (my $i=$marker->{start}; $i<$marker->{stop}; ++$i) {
-            print TMPINPUT $chunks[$i];
-          }
-        }
+      # this was the original code
+      for (my $i=$marker->{start}; $i<$marker->{stop}; ++$i) {
+        print $chunks[$i];
+        system("patch -p1 --ignore-whitespace < $chunks[$i]");
+        #print TMPINPUT $chunks[$i];
+      }
     }
-    close TMPINPUT or die $!;   # NOTE: Leave $tmpinput defined.
+    #close TMPINPUT or die $!;   # NOTE: Leave $tmpinput defined.
 }
 
 sub start_marking {
@@ -294,6 +281,8 @@ sub parse_command_line {
                 }
             } elsif ($flag eq "cp_minimal") {
                 $cp_minimal = $argument;
+            } elsif ($flag eq "bugid") {
+              $bugid = $argument;
             } elsif ($flag eq "test") {
                 $test = $argument;
             } elsif ($flag eq "suffix") {
@@ -378,7 +367,7 @@ sub read_input_chunks {
       # this reads all the files in a directory and stores the filenames in chunks array
       my $dir = "/tmp/cmpatches";
       opendir DIR, $dir or die "Can't open dir $dir: $!";
-      @chunks = grep {!/^\./} readdir DIR;
+      @chunks = map { "$dir/$_" } grep {!/^\./} readdir DIR;
       closedir DIR;
     } else {die "Illegal granularity setting: $granularity\n"}
 }
@@ -495,6 +484,7 @@ sub done {
 # Main ****************
 
 parse_command_line();
+system("git reset HEAD $start_file");  # NOTE: should this not use HEAD???
 select_tmpdir() unless $in_place;
 if (!$in_place) {
   $logfile = "${tmpdir}/$logfile" if $logfile!~m|^/|; # Make absolute.

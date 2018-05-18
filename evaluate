@@ -1,5 +1,5 @@
 #!/bin/sh
-projects=(Lang) # array of projects to test
+projects=(Math) # array of projects to test
 numbugs=$1  # pass in the number of bugs to test
 commitminpath=$(pwd)
 defects4jpath="$(which defects4j)"
@@ -21,6 +21,7 @@ for project in ${projects[@]}; do
 
     # checkout the repo for the bugnum
     repo=/tmp/$project-$bugnum
+    rm -rf $repo
     defects4j checkout -p $project -v "$bugnum"f -w $repo
     cd $repo
 
@@ -29,7 +30,7 @@ for project in ${projects[@]}; do
     echo "$repo" > /tmp/diffWithContext.txt
 
     # get the diff and split into one file per hunk
-    git diff $buggyid $fixedid --unified=0 -- $srcpath >> /tmp/fullDiff.txt
+    git diff $buggyid $fixedid -- $srcpath >> /tmp/fullDiff.txt
     mkdir -p /tmp/cmpatches
     rm -rf /tmp/cmpatches/*
     ${commitminpath}/splitpatch.rb -H /tmp/fullDiff.txt
@@ -39,10 +40,10 @@ for project in ${projects[@]}; do
     git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
 
     # run our tool. Normally you pass in a testname, but we don't need it here
-    python ${commitminpath}/rundelta.py testname defects4j.test
-    python ${commitminpath}/diffMaker.py
-    mv /tmp/diff1.txt ${commitminpath}/experiments/
-    mv /tmp/diff2.txt ${commitminpath}/experiments/
+    python ${commitminpath}/rundelta.py testname defects4j.test $buggyid
+    #python ${commitminpath}/diffMaker.py
+    #mv /tmp/diff1.txt ${commitminpath}/experiments/
+    #mv /tmp/diff2.txt ${commitminpath}/experiments/
 
     # clean up
     #rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt
