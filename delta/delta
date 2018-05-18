@@ -143,7 +143,7 @@ sub test {
       };
 
       if ($@ =~ /timeout/) {
-        $ret = 1 << 8;
+        $ret = 1 << 8;  # simulate failing return value
       } else {
         $ret = $?
       }
@@ -188,26 +188,33 @@ sub render_tmpinput {
       # because in many places $tmpdir/ is prefixed (and I don't want
       # to say $tmpdir="." because I want $start_file to possibly be
       # an absolute path.
-      #open TMPINPUT, ">$start_file" or die $!;
-      $tmpinput = $start_file;
       # always start from original version of file
       if ($granularity eq "hunk") {
         system("git checkout $bugid $start_file");
+      } else {
+        open TMPINPUT, ">$start_file" or die $!;
       }
+
+      $tmpinput = $start_file;
     }
     else {
       $tmpinput = unused_tempfile();
-      #open TMPINPUT, ">${tmpdir}/$tmpinput" or die $!;
+      open TMPINPUT, ">${tmpdir}/$tmpinput" or die $!;
     }
     foreach my $marker (@current_markers) {
       # this was the original code
       for (my $i=$marker->{start}; $i<$marker->{stop}; ++$i) {
-        print $chunks[$i];
-        system("patch -p1 --ignore-whitespace < $chunks[$i]");
-        #print TMPINPUT $chunks[$i];
+        if ($granularity eq "hunk") {
+          system("patch -p1 --ignore-whitespace < $chunks[$i]");
+        } else {
+          print TMPINPUT $chunks[$i];
+        }
       }
     }
-    #close TMPINPUT or die $!;   # NOTE: Leave $tmpinput defined.
+
+    if ($granularity ne "hunk") {
+      close TMPINPUT or die $!;   # NOTE: Leave $tmpinput defined.
+    }
 }
 
 sub start_marking {
@@ -484,7 +491,9 @@ sub done {
 # Main ****************
 
 parse_command_line();
-system("git reset HEAD $start_file");  # NOTE: should this not use HEAD???
+if ($granularity eq "hunk") {
+  system("git reset HEAD $start_file");  # NOTE: should this not use HEAD???
+}
 select_tmpdir() unless $in_place;
 if (!$in_place) {
   $logfile = "${tmpdir}/$logfile" if $logfile!~m|^/|; # Make absolute.
