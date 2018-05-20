@@ -374,7 +374,17 @@ sub read_input_chunks {
       # this reads all the files in a directory and stores the filenames in chunks array
       my $dir = "/tmp/cmpatches";
       opendir DIR, $dir or die "Can't open dir $dir: $!";
-      @chunks = map { "$dir/$_" } grep {!/^\./} readdir DIR;
+      #@chunks = map { "$dir/$_" } grep {!/^\./} readdir DIR;
+
+      #opendir DIR, $dir or die "Can't open dir $dir: $!";
+      my @rawDir = grep {!/^\./} readdir DIR;
+      my @regDir = ();
+      for(my $i = 0; $i < scalar @rawDir; $i++){
+      if ( $rawDir[i] =~ /^ $start_file \.+.$/ ){
+                  push @regDir, $rawDir[i];
+	  }
+      }
+      @chunks = map { "$dir/$_" } @regDir;
       closedir DIR;
     } else {die "Illegal granularity setting: $granularity\n"}
 }
