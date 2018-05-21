@@ -1,0 +1,30 @@
+﻿Conner Knight: connerk
+Week 9 Status Report
+
+
+Last Week’s Goals:
+* Work on breaking input into chunks to reduce runtime
+* once we get that working run the experiments and analyze the results
+* think about possible ways to get delta to run on diffs rather then files
+
+
+Progress From This Week:
+
+
+
+
+        We were focusing a lot of this week on trying to find ways to speed up our tool, even if it means the cost of accuracy or precision. We found that it probably wouldn’t be feasible to possible to convert our tool to use diffs, in the short amount of time we have to turn it in. This would require drastic changes to the delta algorithm and completely revamping how delta works. We decided to instead use a technique that breaks our diff to be commited into chunks of code that we run delta on, so that instead of working on single lines it instead works on multiple lines at a time. This seems to improve our speed quite a bit, tests done on our small example showed a decrease of runtime from around 4 minutes to 20 seconds. We currently need to polish it up a bit for multi file commits, but we hope that this will help us greatly in getting our tool to actually finish on our experiments.
+
+
+        Going forward we will hopefully be able to get this working on bigger files, and this week hopefully we can test it on our defects4j repo. This will provide us with data we can use to access the usefulness of our tool on real commits with regards to accuracy, precision, and runtime. We also need to spend a fair amount of time cleaning up and testing our code, since we’ve been so focused on getting it to run quicker that a lot of the things we’ve added have gone untested, and the code is largely undocumented, so we need to clean that up as well.
+ 
+
+
+
+
+Future Plan:
+Next Week:
+* get our tool completely working with chunks instead of line by line
+* test our code against our experiments with this new method, hopefully tool will be able to finish with the increased speedup
+* clean up code, make it more readable + more documentation
+* Add more tests to code
