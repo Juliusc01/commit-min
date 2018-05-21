@@ -1,0 +1,22 @@
+Julius Christenson: juliusc
+
+Week 9 Individual Status Report
+
+Last Week’s Goals:
+Get our program to run faster (on diff files?)
+Get actual initial results
+
+
+Progress From This Week:
+Early in the week, I worked on the presentation slides in preparation for the presentation on Wednesday. I adapted the slides from the
+previous presentation, taking out some, changing others, and of course adding new slides (with a demo). I spent Tuesday night getting
+the slides to a presentable state, and then practiced for the presentation. I started to work on getting the output of our tool to
+work with the approach that we are now taking, which is using hunks instead of files. I have yet to finish that, but it shouldn't be too
+much more work to get it outputting nicely with our new approach
+
+Future Plan:
+Next Week:
+Fix our tools output
+Get actual initial results
+Tidy up codebase to comply with issues raised by other team
+Work on final draft of report
