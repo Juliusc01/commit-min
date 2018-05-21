@@ -1,0 +1,17 @@
+Sarah Zhou
+sarahsz
+
+Goals from last week:
+
+- Work on the presentation slides, and rehearse presenting with Julius
+- Try to get picireny set up
+
+Progress from this week:
+
+I worked on the presentation slides and updated them from our last presentation. Me and Julius spent Tuesday on getting the slides prepared and each individually practiced on presenting. Our team has discussed working on making delta debugging working on hunks to reduce runtime. Hopefully after integrating our refactor module we can reduce the number of files delta has to create diff hunks out of. I also spent a good amount of time looking through the delta debugging tool, trying to help out with working on getting the code to work with hunks. In addition, me and Evan meet up on Sunday to get the refactor tool integrated into our project. Today, I met up with Jacob and Evan and we set up and discussed what we needed to get the refactor tool integrated with the rest of the modules. The entire team is meeting up today at 5:30 to work in the labs and make progress on our project. 
+
+
+Future Goals:
+
+- Get refactor tool integrated (probably will be done by today)
+- Help with getting refactor working with multi-file hunks
