@@ -9,6 +9,7 @@ We have only worked from the CSE VM, but you may be able to use other systems
 	- To install, run:
 		```
 		cpan App:cpanminus
+			select "yes" then "sudo"
 		sudo cpanm IPC::Run
 		```
 - Python 2.7
@@ -18,7 +19,7 @@ We have only worked from the CSE VM, but you may be able to use other systems
 
  1. Clone commit-min
 	 - ```git clone https://github.com/Juliusc01/commit-min```
- 2. Install commit-min on your repo
+ 2. Cd into the commit-min directory and run the install script to get commit-min on your repo
 	 - ```./commit-min-install /Full/Path/To/My/Repo/```
 
 ## Example
