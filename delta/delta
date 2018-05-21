@@ -379,10 +379,11 @@ sub read_input_chunks {
       #opendir DIR, $dir or die "Can't open dir $dir: $!";
       my @rawDir = grep {!/^\./} readdir DIR;
       my @regDir = ();
+      my $file_name = (split "/", $start_file)[-1];
       for(my $i = 0; $i < scalar @rawDir; $i++){
-      if ( $rawDir[i] =~ /^ $start_file \.+.$/ ){
-                  push @regDir, $rawDir[i];
-	  }
+        if ( $rawDir[$i] =~ /^$file_name.*/ ){
+          push @regDir, $rawDir[$i];
+	      }
       }
       @chunks = map { "$dir/$_" } @regDir;
       closedir DIR;
