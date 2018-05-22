@@ -25,6 +25,12 @@ for project in ${projects[@]}; do
     defects4j checkout -p $project -v "$bugnum"f -w $repo
     cd $repo
 
+    # call refactor
+    git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
+    prefix=`pwd`
+    awk -v prefix="$prefix" '{print prefix $0}' /tmp/files.txt
+    python $commitmin/refactor.py /tmp/files.txt
+
     # create all the diffs
     echo "$repo" > /tmp/fullDiff.txt
     echo "$repo" > /tmp/diffWithContext.txt

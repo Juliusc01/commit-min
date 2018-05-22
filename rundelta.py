@@ -15,8 +15,8 @@ def parse_diff(full_path):
   lines = diff_file.read().splitlines()
 
   # get a list of full paths for files that are not just refactors (we want to minimize)
-  #refactor = open("/tmp/refactorfiles.txt")
-  #refactor_files = refactor.read().splitlines()
+  refactor = open("/tmp/refactorfiles.txt")
+  refactor_files = refactor.read().splitlines()
 
   root_repo = lines.pop(0)  # path to the root of the repo
 
@@ -33,17 +33,17 @@ def parse_diff(full_path):
     # check if this is a new file
     if(line.startswith("diff") and has_changes):
       # don't include any paths that aren't in refactor files
-      #if path in refactor_files:
-      path_to_diffs[path] = diffs
+      if path in refactor_files:
+        path_to_diffs[path] = diffs
       diffs = []
       path = None
       has_changes = False
 
   # don't include any paths that aren't in refactor files
-  #if path in refactor_files:
-  path_to_diffs[path] = diffs
+  if path in refactor_files:
+    path_to_diffs[path] = diffs
   diff_file.close()
-  #refactor.close()
+  refactor.close()
 
   return path_to_diffs
 
