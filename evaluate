@@ -44,6 +44,7 @@ for project in ${projects[@]}; do
     python ${commitminpath}/diffMaker.py
     mv /tmp/diff1.txt ${commitminpath}/experiments/
     mv /tmp/diff2.txt ${commitminpath}/experiments/
+    python ${commitminpath}/experiments/dataProcessor.py
 
     # clean up
     #rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt
