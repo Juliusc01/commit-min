@@ -1,0 +1,17 @@
+Evan Blajev: eblajev
+
+Last Week: 
+    midterms, defects4j
+
+This week:
+    Tested end to end setup to simulate a new user
+    Went through readme and found confusing pinch points and made the installation clearer
+    Set up meeting to understand delta’s needs how to tie refactor into it
+    Set ups group meeting on Tuesday in addition to weekly meeting to have group work time
+    Create regex for delta to only consider hunks corresponding to tests (pair programming with Jacob)
+
+Next Week:
+    Improve delta efficency, work with Jacob
+    Work with Julius to call refactor from CLI
+
+
