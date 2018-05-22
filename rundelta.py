@@ -15,8 +15,8 @@ def parse_diff(full_path):
   lines = diff_file.read().splitlines()
 
   # get a list of full paths for files that are not just refactors (we want to minimize)
-  refactor = open("/tmp/refactorfiles.txt")
-  refactor_files = refactor.read().splitlines()
+  #refactor = open("/tmp/refactorfiles.txt")
+  #refactor_files = refactor.read().splitlines()
 
   root_repo = lines.pop(0)  # path to the root of the repo
 
@@ -33,17 +33,17 @@ def parse_diff(full_path):
     # check if this is a new file
     if(line.startswith("diff") and has_changes):
       # don't include any paths that aren't in refactor files
-      if path in refactor_files:
-        path_to_diffs[path] = diffs
+      #if path in refactor_files:
+      path_to_diffs[path] = diffs
       diffs = []
       path = None
       has_changes = False
 
   # don't include any paths that aren't in refactor files
-  if path in refactor_files:
-    path_to_diffs[path] = diffs
+  #if path in refactor_files:
+  path_to_diffs[path] = diffs
   diff_file.close()
-  refactor.close()
+  #refactor.close()
 
   return path_to_diffs
 
@@ -152,6 +152,35 @@ def print_new_changes(full_path, path_to_reverts):
   new_file.close()
   diff_file.close()
 
+def format_changes(full_path):
+  path_to_diffs = {}  # map from path to list of diff lines
+  diffs = []
+  path = None
+  has_changes = False
+  other_lines = [] # for graph comparison
+  diff_file = open(full_path)
+  lines = diff_file.read().splitlines()
+  root_repo = lines.pop(0)  # path to the root of the repo
+  # loop over lines, adding diffs to map
+  for line in lines:
+    other_lines.append(line)
+    if(line.startswith("+++")):
+      has_changes = True
+      path = root_repo + line[5:]
+
+    # check if this is a new file
+    if(line.startswith("diff") and has_changes):
+      path_to_diffs[path] = diffs
+      diffs = []
+      path = None
+      has_changes = False
+
+  path_to_diffs[path] = diffs
+  new_file = open("/tmp/diffOurs.txt", "w")
+  new_file.write('\n'.join(other_lines))
+  new_file.close()
+  diff_file.close()
+
 def interrupt_handler():
   # do something to kill multidelta and clean up files
   sys.exit(0)
@@ -159,6 +188,7 @@ def interrupt_handler():
 def main():
   path_to_diffs = parse_diff("/tmp/fullDiff.txt") 
   run_multidelta(path_to_diffs)
+  format_changes("/tmp/diffWithContext.txt")
   #path_to_reverts = find_reverts(path_to_diffs)
   #print_new_changes("/tmp/diffWithContext.txt", path_to_reverts)
   #revert_changes(path_to_reverts)

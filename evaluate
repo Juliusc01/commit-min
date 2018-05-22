@@ -4,7 +4,7 @@ numbugs=$1  # pass in the number of bugs to test
 commitminpath=$(pwd)
 defects4jpath="$(which defects4j)"
 defects4jpath=${defects4jpath::-13}  # cut off the bin/defects4j
-
+loopCount=1
 for project in ${projects[@]}; do
   projectpath=${defects4jpath}projects/$project/
   bugs=($(head -$numbugs "$projectpath"commit-db))  # array of the top numbugs bugs
@@ -42,14 +42,23 @@ for project in ${projects[@]}; do
     # run our tool. Normally you pass in a testname, but we don't need it here
     python ${commitminpath}/rundelta.py testname defects4j.test $buggyid
     python ${commitminpath}/diffMaker.py
-    mv -f /tmp/diff1.txt ${commitminpath}/experiments/
-    mv -f /tmp/diff2.txt ${commitminpath}/experiments/
-    python ${commitminpath}/experiments/dataProcessor.py
+    mv -f /tmp/diffOther.txt ${commitminpath}/experiments/
+    mv -f /tmp/diffNewOurs.txt ${commitminpath}/experiments/
+    mv ${commitminpath}/experiments/diffNewOurs.txt ${commitminpath}/experiments/diffOurs${buggyid}.txt
+    mv ${commitminpath}/experiments/diffOther.txt ${commitminpath}/experiments/diffOther${buggyid}.txt
+    echo diffOurs${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
+    echo diffOther${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
+    echo $loopCount >> ${commitminpath}/experiments/diffFiles.txt
+    echo "1" >> ${commitminpath}/experiments/diffFiles.txt
+    loopCount=$((loopCount + 1))
 
     # clean up
-    #rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt
+    rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt /tmp/diffOurs.txt
     #rm -rf $repo
   done
 done
+cd  ${commitminpath}/experiments/
+python ${commitminpath}/experiments/dataProcessor.py
+#rm ${commitminpath}/experiments/diffFiles.txt
 
 

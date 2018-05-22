@@ -3,11 +3,14 @@ import plotly
 from plotly.graph_objs import Scatter, Layout, Table
 import plotly.plotly as py
 import plotly.graph_objs as go
+import os
+import sys
+import signal
 
 
 def main():
-
-    allFiles = open("diffFiles")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    allFiles = open(dir_path+"/diffFiles.txt")
 
     fileList = allFiles.read().splitlines()
 
@@ -20,8 +23,8 @@ def main():
     timeList = []
     comList = []
     while i < len(fileList) - 3 :
-        ourFile = open(fileList[i])
-        expFile = open(fileList[i+1])
+        ourFile = open(dir_path+"/"+fileList[i])
+        expFile = open(dir_path+"/"+fileList[i+1])
         rawOurOutput = ourFile.read().splitlines()
         outSet = set(rawOurOutput)
 
@@ -101,6 +104,9 @@ def main():
         "layout": Layout(title="hello world")
     })
     '''
+def interrupt_handler():
+  sys.exit(0)
 
 if __name__ == '__main__':
-    main()
+  signal.signal(signal.SIGINT, interrupt_handler)
+  main()

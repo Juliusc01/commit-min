@@ -1,5 +1,0 @@
-int i = 5;
-print(p);
-i++;
-j = 44;
-n = j - i
