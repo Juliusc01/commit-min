@@ -42,8 +42,8 @@ for project in ${projects[@]}; do
     # run our tool. Normally you pass in a testname, but we don't need it here
     python ${commitminpath}/rundelta.py testname defects4j.test $buggyid
     python ${commitminpath}/diffMaker.py
-    mv /tmp/diff1.txt ${commitminpath}/experiments/
-    mv /tmp/diff2.txt ${commitminpath}/experiments/
+    mv -f /tmp/diff1.txt ${commitminpath}/experiments/
+    mv -f /tmp/diff2.txt ${commitminpath}/experiments/
     python ${commitminpath}/experiments/dataProcessor.py
 
     # clean up
