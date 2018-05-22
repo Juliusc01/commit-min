@@ -29,7 +29,9 @@ for project in ${projects[@]}; do
     git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
     prefix=`pwd`
     awk -v prefix="$prefix" '{print prefix $0}' /tmp/files.txt
-    python $commitmin/refactor.py /tmp/files.txt
+    #echo "running refactor"
+    #python ${commitminpath}/refactor/refactor.py /tmp/files.txt
+    #echo "done refactor"
 
     # create all the diffs
     echo "$repo" > /tmp/fullDiff.txt

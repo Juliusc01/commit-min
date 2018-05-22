@@ -24,7 +24,8 @@ read testname
 git diff --cached $against --name-only -- > /tmp/files.txt
 prefix=`pwd`
 awk -v prefix="$prefix" '{print prefix $0}' /tmp/files.txt
-python $commitmin/refactor.py /tmp/files.txt
+#python $commitmin/refactor/refactor.py /tmp/files.txt
+
 #exec rm files.txt
 repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
 echo "$repo_path" > /tmp/fullDiff.txt
