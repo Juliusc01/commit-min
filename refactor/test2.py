@@ -1,6 +1,5 @@
 import os
 import commands
-import refactor
 import sys
 
 # This tests refactor tool, should be 100% refactor
@@ -25,12 +24,12 @@ f.write(contents)
 f.close()
 
 os.chdir(script_dir + '/tests/src')
-
-os.system('echo "tests/src/Data-Structures/src/Queues/LinkedListBasedQueue.java" > files.txt')
+s = os.getcwd()
+print s
+os.system('echo ' + s + "/Data-Structures/src/Queues/LinkedListBasedQueue.java > files.txt")
 os.chdir(script_dir)
-refactor.func('tests/src/files.txt', 'tests/src/Data-Structures')
-# s = 'python refactor.py tests/src/files.txt tests/src/Data-Structures'
-# os.system(s)
+s = 'python refactor.py ' +  s + '/files.txt'
+os.system(s)
 c = 'rm -rf ' + script_dir + '/tests'
 os.system(c)
 

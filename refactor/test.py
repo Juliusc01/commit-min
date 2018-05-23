@@ -1,6 +1,5 @@
 import os
 import commands
-import refactor
 import sys
 
 # This script tests the refactor tool by cloning a repository, inserting a new 

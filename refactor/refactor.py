@@ -80,41 +80,41 @@ def printToOutput(output, outputfile):
     outputfile.close()
 
 
-    files = sys.argv[1]
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(script_dir)
-    if '.txt' not in files:
-        raise Exception('Pass in a text file')
+files = sys.argv[1]
+script_dir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(script_dir)
+if '.txt' not in files:
+    raise Exception('Pass in a text file')
 
-    setupInitDir()
-    f = open(files)
-    # one file per line
-    new_file_path = script_dir +"/tmp/new/"
-    old_file_path = script_dir +"/tmp/old/"
-    tmp_path = script_dir + "/tmp"
+setupInitDir()
+f = open(files)
+# one file per line
+new_file_path = script_dir +"/tmp/new/"
+old_file_path = script_dir +"/tmp/old/"
+tmp_path = script_dir + "/tmp"
 
-    # parse input
-    actual_files = []
-    paths = []
-    for line in f:
-        t = line.rpartition("/")
-        repo = t[0]
-        actual_files.append(t[2].rstrip('\n'))
-        paths.append(t[0] + t[1])
-    copyFilesIntoTmpDir(f, actual_files, paths, new_file_path, old_file_path, script_dir, repo)
+# parse input
+actual_files = []
+paths = []
+for line in f:
+    t = line.rpartition("/")
+    repo = t[0]
+    actual_files.append(t[2].rstrip('\n'))
+    paths.append(t[0] + t[1])
+copyFilesIntoTmpDir(f, actual_files, paths, new_file_path, old_file_path, script_dir, repo)
 
-    # Run JPlag on files individually
-    os.chdir(script_dir)
-    setupCompareDir()
-    compare_path = 'tmp/compare'
-    resultpath = script_dir + "/results"
-    outputfile = open('/tmp/refactorfiles.txt', 'w') # /tmp/refactorfiles.txt
-    full_compare = script_dir + '/tmp/compare'
-    output = []
-    i = 0
-    runJPlagCompare(i, actual_files, compare_path, resultpath, full_compare, output, paths, script_dir)
+# Run JPlag on files individually
+os.chdir(script_dir)
+setupCompareDir()
+compare_path = 'tmp/compare'
+resultpath = script_dir + "/results"
+outputfile = open('/tmp/refactorfiles.txt', 'w') # /tmp/refactorfiles.txt
+full_compare = script_dir + '/tmp/compare'
+output = []
+i = 0
+runJPlagCompare(i, actual_files, compare_path, resultpath, full_compare, output, paths, script_dir)
 
-    printToOutput(output, outputfile)
+printToOutput(output, outputfile)
 
-    c = 'rm -rf ' + script_dir + '/results tmp'
-    os.system(c)
+c = 'rm -rf ' + script_dir + '/results tmp'
+os.system(c)
