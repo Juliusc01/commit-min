@@ -3,6 +3,8 @@ import commands
 import refactor
 import sys
 
+# This tests refactor tool, should be 100% refactor
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
 

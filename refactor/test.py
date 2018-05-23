@@ -3,6 +3,10 @@ import commands
 import refactor
 import sys
 
+# This script tests the refactor tool by cloning a repository, inserting a new 
+# function and checking to see if the refactor tool notices that this is not
+# a refactor
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
 
