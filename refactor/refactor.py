@@ -10,7 +10,7 @@ import linecache
 # since the changes are purely refactors, and therefore, not bug fixes 
 
 # Sets up initial directors, /new and /old  based on git changes
-def setupInitDir(files, script_dir):
+def setupInitDir():
     os.system('rm -rf tmp results output_file.txt')
     os.system('mkdir tmp')
     os.system('cd tmp && mkdir new && mkdir old')
@@ -59,7 +59,6 @@ def runJPlagCompare(i, actual_files, compare_path, resultpath, full_compare, out
             output.append(paths[i] + file)
         # delete all results for this comparison
         removeDirectories(full_compare, script_dir)
-
     i+=1
 
 # Helper function for runJPlagCompare, cleans up directors for each of the files
@@ -88,7 +87,7 @@ def func(files):
     if '.txt' not in files:
         raise Exception('Pass in a text file')
 
-    setupInitDir(files, script_dir)
+    setupInitDir()
     f = open(files)
     # one file per line
     new_file_path = script_dir +"/tmp/new/"
