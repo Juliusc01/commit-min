@@ -32,9 +32,9 @@ print s
 file_to_send = 'echo ' + s + "/Data-Structures/src/Stack/ArrayBasedStack.java > files.txt"
 os.system(file_to_send)
 os.chdir(script_dir)
-refactor.func(s + '/files.txt')
-# s = 'python refactor.py tests/src/files.txt tests/src/Data-Structures'
-# os.system(s)
+# refactor.func(s + '/files.txt')
+s = 'python refactor.py ' + s + '/files.txt'
+os.system(s)
 c = 'rm -rf ' + script_dir + '/tests'
 os.system(c)
 

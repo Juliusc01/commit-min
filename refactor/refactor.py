@@ -79,9 +79,8 @@ def printToOutput(output, outputfile):
             outputfile.write(output[i])
     outputfile.close()
 
-def func(files):
-    # files = sys.argv[1]
-    #path_to_files = sys.argv[2]
+
+    files = sys.argv[1]
     script_dir = os.path.dirname(os.path.realpath(__file__))
     os.chdir(script_dir)
     if '.txt' not in files:
