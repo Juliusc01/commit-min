@@ -1,7 +1,10 @@
 import os
 import commands
-import refactor
 import sys
+
+# This script tests the refactor tool by cloning a repository, inserting a new 
+# function and checking to see if the refactor tool notices that this is not
+# a refactor
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
@@ -23,12 +26,14 @@ f.write(contents)
 f.close()
 
 os.chdir(script_dir + '/tests/src')
-
-os.system('echo "tests/src/Data-Structures/src/Stack/ArrayBasedStack.java" > files.txt')
+s = os.getcwd()
+print s
+file_to_send = 'echo ' + s + "/Data-Structures/src/Stack/ArrayBasedStack.java > files.txt"
+os.system(file_to_send)
 os.chdir(script_dir)
-refactor.func('tests/src/files.txt', 'tests/src/Data-Structures')
-# s = 'python refactor.py tests/src/files.txt tests/src/Data-Structures'
-# os.system(s)
+# refactor.func(s + '/files.txt')
+s = 'python refactor.py ' + s + '/files.txt'
+os.system(s)
 c = 'rm -rf ' + script_dir + '/tests'
 os.system(c)
 
