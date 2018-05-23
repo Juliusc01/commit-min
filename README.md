@@ -27,7 +27,8 @@ Here is an example usage that you can follow along with by cloning this repo and
 ```
 git clone https://github.com/jaleum/hellogitworld
 ```
- 1. Make some change to hellogitworld and commit
+ 1. Install commit-min if you have not yet (see Getting started)
+ 2. Make some change to hellogitworld and commit
  	```
 	cd hellogitworld
 	echo "//this is a comment" >> src/main/java/com/github/App.java
@@ -36,8 +37,8 @@ git clone https://github.com/jaleum/hellogitworld
 	git add .
 	git commit -m "This is a test commit"
 	```
-2. When prompted by commit-min, type "y" to continue
-3. Input the test you want commit-min to run on
+3. When prompted by commit-min, type "y" to continue
+4. Input the test you want commit-min to run on
 	- ``` AppTest#testApp```
 
 Commit-min will run on this test, and output the minimized file with respect to the test, getting rid of any unnecessary lines.
