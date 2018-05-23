@@ -1,5 +1,5 @@
 #!/bin/sh
-projects=(Math) # array of projects to test
+projects=(Math Lang) # array of projects to test
 numbugs=$1  # pass in the number of bugs to test
 commitminpath=$(pwd)
 defects4jpath="$(which defects4j)"
@@ -52,10 +52,10 @@ for project in ${projects[@]}; do
     python ${commitminpath}/diffMaker.py
     mv -f /tmp/diffOther.txt ${commitminpath}/experiments/
     mv -f /tmp/diffNewOurs.txt ${commitminpath}/experiments/
-    mv ${commitminpath}/experiments/diffNewOurs.txt ${commitminpath}/experiments/diffOurs${buggyid}.txt
-    mv ${commitminpath}/experiments/diffOther.txt ${commitminpath}/experiments/diffOther${buggyid}.txt
-    echo diffOurs${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
-    echo diffOther${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
+    mv ${commitminpath}/experiments/diffNewOurs.txt ${commitminpath}/experiments/diffOurs${project}${buggyid}.txt
+    mv ${commitminpath}/experiments/diffOther.txt ${commitminpath}/experiments/diffOther${project}${buggyid}.txt
+    echo diffOurs${project}${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
+    echo diffOther${project}${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
     echo $loopCount >> ${commitminpath}/experiments/diffFiles.txt
     echo "1" >> ${commitminpath}/experiments/diffFiles.txt
     loopCount=$((loopCount + 1))
@@ -64,9 +64,11 @@ for project in ${projects[@]}; do
     rm /tmp/fullDiff.txt /tmp/diffWithContext.txt /tmp/files.txt /tmp/diffOurs.txt
     #rm -rf $repo
   done
+  loopCount=1
+  cd  ${commitminpath}/experiments/
+  python ${commitminpath}/experiments/dataProcessor.py $project
+  rm ${commitminpath}/experiments/diffFiles.txt
 done
-cd  ${commitminpath}/experiments/
-python ${commitminpath}/experiments/dataProcessor.py
-#rm ${commitminpath}/experiments/diffFiles.txt
+
 
 

@@ -43,7 +43,7 @@ def parse_diff(full_path):
   #if path in refactor_files:
   path_to_diffs[path] = diffs
   diff_file.close()
-  refactor.close()
+  #refactor.close()
 
   return path_to_diffs
 

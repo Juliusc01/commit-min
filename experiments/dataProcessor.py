@@ -46,50 +46,50 @@ def main():
     plotly.offline.plot({
        "data": [Scatter
             (x=comList, y=accsList)],
-        "layout": Layout(title="Commit size vs Accuracy Graph",
-                          xaxis=dict(title='commit size'),
+        "layout": Layout(title="Bug number vs Accuracy Graph for " + sys.argv[1],
+                          xaxis=dict(title='Bug number'),
                           yaxis=dict(title='percent of bug fix lines found', range=[0,1.05]))
-    },filename='accuracyGraph.html', auto_open=False)
+    },filename='accuracyGraph' + sys.argv[1] + '.html', auto_open=False)
 
     plotly.offline.plot({
         "data": [Scatter
                  (x=comList, y=precsList)],
-        "layout": Layout(title="Commit size vs Precision Graph",
-                         xaxis=dict(title='commit size'),
+        "layout": Layout(title="Bug number vs Precision Graph for " + sys.argv[1],
+                         xaxis=dict(title='Bug number'),
                          yaxis=dict(title='percent of tools bug fix lines valid(valid means line in expected)', range=[0, 1.05]))
-    },filename='precisionGraph.html', auto_open=False)
+    },filename='precisionGraph' + sys.argv[1] + '.html', auto_open=False)
 
     plotly.offline.plot({
         "data": [Scatter
                  (x=comList, y=timeList)],
-        "layout": Layout(title="Commit size vs Time Graph",
-                         xaxis=dict(title='commit size'),
+        "layout": Layout(title="Bug number vs Time Graph for " + sys.argv[1],
+                         xaxis=dict(title='Bug number'),
                          yaxis=dict(title='time for tool to run(seconds)'))
-    }, filename='timeGraph.html', auto_open=False)
+    }, filename='timeGraph' + sys.argv[1] + '.html', auto_open=False)
 
 
 
     plotly.offline.plot({
-        "data": [Table( header=dict(values=['Commit size', 'percent of bug fix lines found']),
+        "data": [Table( header=dict(values=['Bug number', 'percent of bug fix lines found']),
     cells=dict(values=[comList,
                        accsList]))],
-        "layout": Layout(title="commit size vs accuracy")
-    },filename='accuracyTable.html', auto_open=False)
+        "layout": Layout(title="Bug number vs Accuracy for " + sys.argv[1])
+    },filename='accuracyTable' + sys.argv[1] + '.html', auto_open=False)
 
     plotly.offline.plot({
-        "data": [Table(header=dict(values=['Commit size', 'percent of tools bug fix lines valid(valid means line in expected)']),
+        "data": [Table(header=dict(values=['Bug number', 'percent of tools bug fix lines valid(valid means line in expected)']),
                        cells=dict(values=[comList,
                                           precsList]))],
-        "layout": Layout(title="commit size vs precision")
-    }, filename='precisionTable.html', auto_open=False)
+        "layout": Layout(title="Bug number vs Precision for " + sys.argv[1])
+    }, filename='precisionTable' + sys.argv[1] + '.html', auto_open=False)
 
     plotly.offline.plot({
         "data": [Table(
-            header=dict(values=['Commit size', 'time for tool to run(seconds)']),
+            header=dict(values=['Bug number', 'time for tool to run(seconds)']),
             cells=dict(values=[comList,
                                timeList]))],
-        "layout": Layout(title="Commit size vs Time Graph")
-    }, filename='timeTable.html', auto_open=False)
+        "layout": Layout(title="Bug number vs Time for " + sys.argv[1])
+    }, filename='timeTable' + sys.argv[1] + '.html', auto_open=False)
 
     #data = [accTrace]
     #py.iplot(data, filename='scatter-mode')
