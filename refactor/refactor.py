@@ -2,6 +2,13 @@ import os
 import sys
 import linecache
 
+# This tool is run before our main tool delta debugging
+# The purpose of this is to check to see if the user's local changes
+# are purely refactors (for example, we test for variable name changes,
+# white lines, additional comments, and new spaces) 
+# If the user has only changed the following, we will not run delta,
+# since the changes are purely refactors, and therefore, not bug fixes 
+
 # Sets up initial directors, /new and /old  based on git changes
 def setupInitDir(files, script_dir):
     os.system('rm -rf tmp results output_file.txt')
