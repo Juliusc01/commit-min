@@ -1,4 +1,5 @@
 #!/bin/sh
-python ../refactor/test.py
-python ../delta/run-deltaTests.py
+commitminpath="$(git rev-parse --show-toplevel)"  # get the repo root dir
+python ${commitminpath}/refactor/test.py
+python ${commitminpath}/delta/run-deltaTests.py
 
