@@ -1,7 +1,7 @@
 #!/bin/sh
 projects=(Math Lang) # array of projects to test
 numbugs=$1  # pass in the number of bugs to test
-commitminpath=$(pwd)
+commitminpath="$(git rev-parse --show-toplevel)"
 defects4jpath="$(which defects4j)"
 defects4jpath=${defects4jpath::-13}  # cut off the bin/defects4j
 loopCount=1
@@ -48,8 +48,8 @@ for project in ${projects[@]}; do
     git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
 
     # run our tool. Normally you pass in a testname, but we don't need it here
-    python ${commitminpath}/rundelta.py testname defects4j.test $buggyid
-    python ${commitminpath}/diffMaker.py
+    python ${commitminpath}/delta/rundelta.py testname defects4j.test $buggyid
+    python ${commitminpath}/scripts/diffMaker.py
     mv -f /tmp/diffOther.txt ${commitminpath}/experiments/
     mv -f /tmp/diffNewOurs.txt ${commitminpath}/experiments/
     mv ${commitminpath}/experiments/diffNewOurs.txt ${commitminpath}/experiments/diffOurs${project}${buggyid}.txt

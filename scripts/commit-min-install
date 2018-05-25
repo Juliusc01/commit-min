@@ -7,7 +7,7 @@ fi
 # get commit-min repo path and add to pre-commit
 repo_path="$(git rev-parse --show-toplevel)"
 cp pre-commit tmp-pre-commit
-sed -i "2i commitmin='$repo_path'" tmp-pre-commit
+sed -i "2i commitminpath='$repo_path'" tmp-pre-commit
 
 hook_path="$1.git/hooks/pre-commit"  # path to 
 

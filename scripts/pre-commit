@@ -25,16 +25,15 @@ read testname
 #git diff --cached $against --name-only -- > /tmp/files.txt
 #prefix=`pwd`
 #awk -v prefix="$prefix" '{print prefix $0}' /tmp/files.txt
-#python $commitmin/refactor/refactor.py /tmp/files.txt
+#python ${commitminpath}/refactor/refactor.py /tmp/files.txt
 
-#exec rm files.txt
 repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
 echo "$repo_path" > /tmp/fullDiff.txt
 echo "$repo_path" > /tmp/diffWithContext.txt
 git diff --cached $against -- >> /tmp/fullDiff.txt
 mkdir -p /tmp/cmpatches
 rm -rf /tmp/cmpatches/*
-${commitmin}/splitpatch.rb -H /tmp/fullDiff.txt
+${commitminpath}/scripts/splitpatch.rb -H /tmp/fullDiff.txt
 mv *.patch /tmp/cmpatches
 
 git diff --cached $against -- >> /tmp/diffWithContext.txt
@@ -42,7 +41,7 @@ git diff --cached $against --name-only -- > /tmp/files.txt
 
 # call rundelta and time execution
 startrundelta=`date +%s`
-python $commitmin/rundelta.py $testname mvn.test $against
+python ${commitminpath}/delta/rundelta.py $testname mvn.test $against
 endrundelta=`date +%s`
 echo $((endrundelta-startrundelta)) > /tmp/delta_runtime
 
