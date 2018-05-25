@@ -1,6 +1,10 @@
 #!/bin/bash
 # -*-sh-*-
+# This file is run anytime delta tries a new subset
+
 grep_string="Tests run: [1-9]*, Failures: 0, Errors: 0, Skipped: 0"
+
+# compiles and runs tests, checking if output indicates success
 if mvn -Dtest=$1 -DfailIfNoTests=false clean test | grep "$grep_string" > /dev/null; then
   exit 0;  # Success
 fi

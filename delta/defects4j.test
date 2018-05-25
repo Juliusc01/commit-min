@@ -1,6 +1,10 @@
 #!/bin/bash
 # -*-sh-*-
+# This file is run anytime delta tries a new subset
+
 grep_string="Failing tests: 0"
+
+# compiles and runs tests, checking if output indicates success
 if ant clean && defects4j compile && defects4j test -r | grep "$grep_string" > /dev/null; then
   exit 0;  # Success
 fi
