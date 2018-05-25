@@ -1,6 +1,5 @@
-#!/user/bin/python
-#import sys
-#sys.path.append('../')
+#!/usr/bin/python
+import os
 from rundelta import parse_diff
 
 def main():
@@ -13,14 +12,13 @@ def main():
         print "Parse diff test succeeded!"
 
 def testParseDiff():
-    diffFile = open("tests/actualDiff.txt","r+")
+    script_dir = os.path.dirname(__file__)
+    diff_file_path = os.path.join(script_dir, "tests/actualDiff.txt")
+    actual_file_path = os.path.join(script_dir, "tests/testDiff.txt")
+
+    diffFile = open(diff_file_path,"r+")
     ls = diffFile.read().splitlines()
-    #readDiff = open("tests/testDiff.txt","r+")
-    #ls = readDiff.read().splitlines()
-    #for l in ls:
-    #    diffFile.write(l)
-    #actual = parse_diff("tests/testDiff.txt")
-    actual = parse_diff("tests/testDiff.txt")
+    actual = parse_diff(actual_file_path)
     i = 0
     for a in actual:
         if not a == ls[i]:

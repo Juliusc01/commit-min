@@ -54,4 +54,4 @@ To run our tests, cd to commit-min and run:
 Instructions for how to run the experiments are located in the experiments directory in the Readme.txt file
 
 ## User manual
-Our user manual is located at the top level of the repository, called User Manual.pdf
+Our user manual is located at the top level of the repository, called UserManual.pdf

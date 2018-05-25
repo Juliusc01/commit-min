@@ -1,4 +1,4 @@
 #!/bin/sh
 python refactor/test.py
-python run-deltaTests.py
+python delta/run-deltaTests.py
 
