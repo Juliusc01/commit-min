@@ -21,11 +21,11 @@ echo "Please enter the name of the test to run Commit-min with (TestFileName#tes
 read testname
 
 #Run refactor tool here
-echo "IAM HEREEE YO ~!~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!~!@(@"
-git diff --cached $against --name-only -- > /tmp/files.txt
-prefix=`pwd`
-awk -v prefix="$prefix" '{print prefix $0}' /tmp/files.txt
-python $commitmin/refactor/refactor.py /tmp/files.txt
+#echo "IAM HEREEE YO ~!~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!~!@(@"
+#git diff --cached $against --name-only -- > /tmp/files.txt
+#prefix=`pwd`
+#awk -v prefix="$prefix" '{print prefix $0}' /tmp/files.txt
+#python $commitmin/refactor/refactor.py /tmp/files.txt
 
 #exec rm files.txt
 repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
@@ -39,8 +39,13 @@ mv *.patch /tmp/cmpatches
 
 git diff --cached $against -- >> /tmp/diffWithContext.txt
 git diff --cached $against --name-only -- > /tmp/files.txt
-#exec 1>&2
+
+# call rundelta and time execution
+startrundelta=`date +%s`
 python $commitmin/rundelta.py $testname mvn.test $against
+endrundelta=`date +%s`
+echo $((endrundelta-startrundelta)) > /tmp/delta_runtime
+
 
 # don't want to commit quite yet, non zero prevents this
 echo "Not committing!"
