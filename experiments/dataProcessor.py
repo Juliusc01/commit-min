@@ -12,7 +12,7 @@ look in readme.
 '''
 def main():
 
-    allFiles = open("diffFiles")
+    allFiles = open("diffFiles.txt")
 
     fileList = allFiles.read().splitlines()
 

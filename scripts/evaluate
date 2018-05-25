@@ -1,5 +1,5 @@
 #!/bin/sh
-projects=(Math Lang) # array of projects to test
+projects=(Lang) # array of projects to test
 numbugs=$1  # pass in the number of bugs to test
 commitminpath="$(git rev-parse --show-toplevel)"
 defects4jpath="$(which defects4j)"
@@ -41,7 +41,7 @@ for project in ${projects[@]}; do
     git diff $buggyid $fixedid -- $srcpath >> /tmp/fullDiff.txt
     mkdir -p /tmp/cmpatches
     rm -rf /tmp/cmpatches/*
-    ${commitminpath}/splitpatch.rb -H /tmp/fullDiff.txt
+    ${commitminpath}/scripts/splitpatch.rb -H /tmp/fullDiff.txt
     mv *.patch /tmp/cmpatches
 
     git diff $buggyid $fixedid -- $srcpath >> /tmp/diffWithContext.txt

@@ -1,1 +1,3 @@
 *.pyc
+experiments/*.html
+experiments/diffO*.txt
