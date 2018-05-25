@@ -4,7 +4,12 @@ from plotly.graph_objs import Scatter, Layout, Table, Bar
 import plotly.offline as py
 import plotly.graph_objs as go
 
-
+'''
+Produces a graphs and tables based on the tools diff and expected diff
+given in the diffFiles file. Produces a accuracy, precision, and
+time bar graph and Table. For more information about what those are
+look in readme.
+'''
 def main():
 
     allFiles = open("diffFiles")
