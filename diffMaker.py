@@ -29,12 +29,11 @@ def parse_diff(full_path, which_one):
   diff_file.close()
 
 def interrupt_handler():
-  # do something to kill multidelta and clean up files
   sys.exit(0)
   
 def main():
-  path_to_diffs = parse_diff("/tmp/fullDiff.txt", 1)
-  path_to_diffs = parse_diff("/tmp/diffOurs.txt", 2)
+  path_to_diffs = parse_diff("/tmp/fullDiff.txt", "Other")
+  path_to_diffs = parse_diff("/tmp/diffOurs.txt", "NewOurs")
 
 if __name__ == '__main__':
   signal.signal(signal.SIGINT, interrupt_handler)

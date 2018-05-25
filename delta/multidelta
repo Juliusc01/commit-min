@@ -63,6 +63,9 @@ while ($ARGV[0] =~ m"^-") {
   }
   elsif ($ARGV[0] =~ m"^-unit_test=") {
     ($unit_test) = ($ARGV[0] =~ m"=(\S+)");
+  } 
+  elsif ($ARGV[0] =~ m"^-bugid=") {
+    ($bugid) = ($ARGV[0] =~ m"=(\S+)");
   }
   elsif ($ARGV[0] eq "-u") {
     $undo = 1;
@@ -118,7 +121,7 @@ for $fn (@files) {
 # one by one, apply delta
 for $fn (@files) {
   diagnostic("applying delta to $fn");
-  run("$delta -in_place -test=$script -timeout=$timeout -unit_test=$unit_test $fn");
+  run("$delta -in_place -test=$script -bugid=$bugid -granularity=hunk -timeout=$timeout -unit_test=$unit_test $fn");
 
   if (-f "DELTA-STOP") {
     diagnostic("Stopping because DELTA-STOP exists");

@@ -36,4 +36,3 @@ os.system(c)
 result = commands.getoutput('wc -c < output_file.txt')
 if (result != '0'):
     sys.exit(-1)
-

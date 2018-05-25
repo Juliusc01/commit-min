@@ -60,6 +60,7 @@ my $start_file;                 # name of input/output file for in_place
 my $file_name;
 my $unit_test;
 my $timeout;
+my $bugid;
 
 my $help_message = <<"END"
 
@@ -142,7 +143,7 @@ sub test {
       };
 
       if ($@ =~ /timeout/) {
-        $ret = 0;
+        $ret = 1 << 8;  # simulate failing return value
       } else {
         $ret = $?
       }
@@ -187,7 +188,13 @@ sub render_tmpinput {
       # because in many places $tmpdir/ is prefixed (and I don't want
       # to say $tmpdir="." because I want $start_file to possibly be
       # an absolute path.
-      open TMPINPUT, ">$start_file" or die $!;
+      # always start from original version of file
+      if ($granularity eq "hunk") {
+        system("git checkout $bugid $start_file");
+      } else {
+        open TMPINPUT, ">$start_file" or die $!;
+      }
+
       $tmpinput = $start_file;
     }
     else {
@@ -195,11 +202,19 @@ sub render_tmpinput {
       open TMPINPUT, ">${tmpdir}/$tmpinput" or die $!;
     }
     foreach my $marker (@current_markers) {
-        for (my $i=$marker->{start}; $i<$marker->{stop}; ++$i) {
-            print TMPINPUT $chunks[$i];
+      # this was the original code
+      for (my $i=$marker->{start}; $i<$marker->{stop}; ++$i) {
+        if ($granularity eq "hunk") {
+          system("patch -p1 --ignore-whitespace < $chunks[$i]");
+        } else {
+          print TMPINPUT $chunks[$i];
         }
+      }
     }
-    close TMPINPUT or die $!;   # NOTE: Leave $tmpinput defined.
+
+    if ($granularity ne "hunk") {
+      close TMPINPUT or die $!;   # NOTE: Leave $tmpinput defined.
+    }
 }
 
 sub start_marking {
@@ -268,11 +283,13 @@ sub parse_command_line {
             } elsif ($flag eq "quiet") {
                 $quiet++;
             } elsif ($flag eq "granularity") {
-                if ($argument eq "line" || $argument eq "top_form") {
+                if ($argument eq "line" || $argument eq "top_form" || $argument eq "hunk") {
                     $granularity = $argument;
                 }
             } elsif ($flag eq "cp_minimal") {
                 $cp_minimal = $argument;
+            } elsif ($flag eq "bugid") {
+              $bugid = $argument;
             } elsif ($flag eq "test") {
                 $test = $argument;
             } elsif ($flag eq "suffix") {
@@ -353,6 +370,23 @@ sub read_input_chunks {
         }
         $chunk .= $a;
         push @chunks, $chunk;
+    } elsif ($granularity eq "hunk") {
+      # this reads all the files in a directory and stores the filenames in chunks array
+      my $dir = "/tmp/cmpatches";
+      opendir DIR, $dir or die "Can't open dir $dir: $!";
+      #@chunks = map { "$dir/$_" } grep {!/^\./} readdir DIR;
+
+      #opendir DIR, $dir or die "Can't open dir $dir: $!";
+      my @rawDir = grep {!/^\./} readdir DIR;
+      my @regDir = ();
+      my $file_name = (split "/", $start_file)[-1];
+      for(my $i = 0; $i < scalar @rawDir; $i++){
+        if ( $rawDir[$i] =~ /^$file_name.*/ ){
+          push @regDir, $rawDir[$i];
+	      }
+      }
+      @chunks = map { "$dir/$_" } @regDir;
+      closedir DIR;
     } else {die "Illegal granularity setting: $granularity\n"}
 }
 
@@ -468,6 +502,9 @@ sub done {
 # Main ****************
 
 parse_command_line();
+if ($granularity eq "hunk") {
+  system("git reset HEAD $start_file");  # NOTE: should this not use HEAD???
+}
 select_tmpdir() unless $in_place;
 if (!$in_place) {
   $logfile = "${tmpdir}/$logfile" if $logfile!~m|^/|; # Make absolute.
