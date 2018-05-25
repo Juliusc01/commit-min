@@ -1,16 +1,13 @@
 #!/user/bin/python
 import plotly
-from plotly.graph_objs import Scatter, Layout, Table
-import plotly.plotly as py
+from plotly.graph_objs import Scatter, Layout, Table, Bar
+import plotly.offline as py
 import plotly.graph_objs as go
-import os
-import sys
-import signal
 
 
 def main():
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    allFiles = open(dir_path+"/diffFiles.txt")
+
+    allFiles = open("diffFiles")
 
     fileList = allFiles.read().splitlines()
 
@@ -23,8 +20,8 @@ def main():
     timeList = []
     comList = []
     while i < len(fileList) - 3 :
-        ourFile = open(dir_path+"/"+fileList[i])
-        expFile = open(dir_path+"/"+fileList[i+1])
+        ourFile = open(fileList[i])
+        expFile = open(fileList[i+1])
         rawOurOutput = ourFile.read().splitlines()
         outSet = set(rawOurOutput)
 
@@ -43,29 +40,51 @@ def main():
         timeList.append(fileList[i+3])
         i += 4
 
+    '''
+    trace1 = go.Bar(
+        x=['giraffes', 'orangutans', 'monkeys'],
+        y=[20, 14, 23],
+        name='SF Zoo'
+    )
+    trace2 = go.Bar(
+        x=['giraffes', 'orangutans', 'monkeys'],
+        y=[12, 18, 29],
+        name='LA Zoo'
+    )
+
+    data = [trace1, trace2]
+    layout = go.Layout(
+        barmode='group'
+    )
+
+    fig = go.Figure(data=data, layout=layout)
+    py.plot(fig, filename='grouped-bar')
+    '''
     plotly.offline.plot({
-       "data": [Scatter
-            (x=comList, y=accsList)],
-        "layout": Layout(title="Bug number vs Accuracy Graph for " + sys.argv[1],
-                          xaxis=dict(title='Bug number'),
-                          yaxis=dict(title='percent of bug fix lines found', range=[0,1.05]))
-    },filename='accuracyGraph' + sys.argv[1] + '.html', auto_open=False)
+       "data": [Bar
+            (x=comList, y=accsList, width=1)],
+        "layout": Layout(title="Bug number vs Accuracy Graph",
+                        xaxis=dict(title='Bug number'),
+                        yaxis=dict(title='percent of bug fix lines found', range=[0,1.05])
+
+                        )
+    },filename='accuracyGraph.html', auto_open=False)
 
     plotly.offline.plot({
-        "data": [Scatter
-                 (x=comList, y=precsList)],
-        "layout": Layout(title="Bug number vs Precision Graph for " + sys.argv[1],
+        "data": [Bar
+                 (x=comList, y=precsList, width=1)],
+        "layout": Layout(title="Bug number vs Precision Graph",
                          xaxis=dict(title='Bug number'),
                          yaxis=dict(title='percent of tools bug fix lines valid(valid means line in expected)', range=[0, 1.05]))
-    },filename='precisionGraph' + sys.argv[1] + '.html', auto_open=False)
+    },filename='precisionGraph.html', auto_open=False)
 
     plotly.offline.plot({
-        "data": [Scatter
-                 (x=comList, y=timeList)],
-        "layout": Layout(title="Bug number vs Time Graph for " + sys.argv[1],
+        "data": [Bar
+                 (x=comList, y=timeList, width=1)],
+        "layout": Layout(title="Bug number vs Time Graph",
                          xaxis=dict(title='Bug number'),
                          yaxis=dict(title='time for tool to run(seconds)'))
-    }, filename='timeGraph' + sys.argv[1] + '.html', auto_open=False)
+    }, filename='timeGraph.html', auto_open=False)
 
 
 
@@ -73,23 +92,23 @@ def main():
         "data": [Table( header=dict(values=['Bug number', 'percent of bug fix lines found']),
     cells=dict(values=[comList,
                        accsList]))],
-        "layout": Layout(title="Bug number vs Accuracy for " + sys.argv[1])
-    },filename='accuracyTable' + sys.argv[1] + '.html', auto_open=False)
+        "layout": Layout(title="Bug number vs accuracy")
+    },filename='accuracyTable.html', auto_open=False)
 
     plotly.offline.plot({
         "data": [Table(header=dict(values=['Bug number', 'percent of tools bug fix lines valid(valid means line in expected)']),
                        cells=dict(values=[comList,
                                           precsList]))],
-        "layout": Layout(title="Bug number vs Precision for " + sys.argv[1])
-    }, filename='precisionTable' + sys.argv[1] + '.html', auto_open=False)
+        "layout": Layout(title="Bug number vs precision")
+    }, filename='precisionTable.html', auto_open=False)
 
     plotly.offline.plot({
         "data": [Table(
             header=dict(values=['Bug number', 'time for tool to run(seconds)']),
             cells=dict(values=[comList,
                                timeList]))],
-        "layout": Layout(title="Bug number vs Time for " + sys.argv[1])
-    }, filename='timeTable' + sys.argv[1] + '.html', auto_open=False)
+        "layout": Layout(title="Bug number vs Time Graph")
+    }, filename='timeTable.html', auto_open=False)
 
     #data = [accTrace]
     #py.iplot(data, filename='scatter-mode')
@@ -104,9 +123,6 @@ def main():
         "layout": Layout(title="hello world")
     })
     '''
-def interrupt_handler():
-  sys.exit(0)
 
 if __name__ == '__main__':
-  signal.signal(signal.SIGINT, interrupt_handler)
-  main()
+    main()
