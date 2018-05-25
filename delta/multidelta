@@ -15,7 +15,6 @@ use FindBin;
 use Time::HiRes qw ( time );
 
 $delta          = "$FindBin::Bin/delta";
-$topformflat    = "$FindBin::Bin/topformflat";
 $log            = "multidelta.log";
 
 $level          = 0;
@@ -53,9 +52,6 @@ Options:
 EOF
   exit(0);
 }
-
-die "$topformflat doesn't exit or isn't executable.  Did you run 'make'?\n"
-    unless (-x $topformflat);
 
 while ($ARGV[0] =~ m"^-") {
   if ($ARGV[0] =~ m"^-level=") {

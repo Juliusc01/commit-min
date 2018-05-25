@@ -52,10 +52,10 @@ def run_multidelta(path_to_diffs):
   files = ' '.join(str(path) for path in path_to_diffs.keys())
 
   # gets the directory this script is in, should be commit-min
-  script_dir = os.path.dirname(os.path.realpath(__file__)) 
+  script_dir = os.path.dirname(os.path.realpath(__file__)) + '/'
 
-  multi = script_dir + '/delta/multidelta'
-  test_script = script_dir + '/delta/' + str(sys.argv[2])
+  multi = script_dir + 'multidelta'
+  test_script = script_dir + str(sys.argv[2])
   unit_test = '-unit_test=' + str(sys.argv[1])
   buggy_commit = '-bugid=' + str(sys.argv[3])
 
