@@ -1,0 +1,27 @@
+﻿Conner Knight: connerk
+Week 10 Status Report
+
+
+Last Week’s Goals:
+* get our tool completely working with chunks instead of line by line
+* test our code against our experiments with this new method, hopefully tool will be able to finish with the increased speedup
+* clean up code, make it more readable + more documentation
+* Add more tests to code
+
+
+Progress From This Week:
+
+
+        We were able to get a lot done this week in getting our tool to be finished, we added in the refactor tool so now we don’t look at unnecessary files which is an improvement. I was able to get more data for the experiments on accuracy and precision, and runtime using actual commits from the defects4j repo. Our results showed that our tool got 100% accuracy and precision which is a good sign, but it seems like we should do a bit less than perfect. It’s possible that the commits we were looking at were not big enough to find some differences, so we’ll continue to look at more bug fix commit minimizations in the defects4j repo to experiment more with our tool. Although we have looked at a lot of minimizations and we have gotten the same results from all of them, it would still be useful to try to be as comprehensive as possible.
+
+
+        We might want to also look into making installation of our tools and experiments easier for the user, currently we just have a list of commands they have to run, but turning that into a bash script or something may be better. We have some speedup so we might want to think about the potential of how we’re choosing tests to run against, currently we have a method for determining it for defects4j, but it would be nice if we could expand that to work for any repo. We are pretty close to the deadline though, so we might not be able to get that done. We might just want to polish off the rest of our tool, and make sure that it’s as free of bugs as we can get it. We also will need to make sure our user manual and report reflect everything that we have so far.
+
+
+
+
+Future Plan:
+Next Week:
+* Clean up code - restructure repo, add more comments
+* Add more tests
+* experiment with more defects4j minimized bug fix commits
