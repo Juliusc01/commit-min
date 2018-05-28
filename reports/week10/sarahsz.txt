@@ -1,0 +1,18 @@
+Sarah Zhou
+sarahsz
+
+Goals from last week: 
+
+- Get refactor tool integrated (probably will be done by today)
+- Help with getting refactor working with multi-file hunks
+
+Progress from this week:
+
+This week, me and my teammate Evan integrated the refactor into the recommit script. It currently runs successfully on the test App. We spent a good amount of time working out and parsing the input and output formats that we needed in order to connect our tool as well as debugging running JPlag using shorter files than the default minimum length. 
+
+In addition, I spent time on our final report and user manual, making sure that the diagrams and the instructions, as well as our approach was up to date and accurate. I updated the diagrams on both reports. Since we decided against using test analysis, I removed all instances of test analysis in our report, as well as updated the report so it was more up to date.
+
+Future Goals:
+
+- Integrate refactor tool into the evaluate script
+- Continue testing
