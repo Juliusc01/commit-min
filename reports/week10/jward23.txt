@@ -1,0 +1,28 @@
+Week 10 Individual Status Report
+
+Last Week's Goals:
+- Work with Connor to get evaluation plots generated
+- Work with Evan and Sarah to get the refactor tool built in
+- Handle edge cases and failure cases for our tool
+
+Progress From This Week:
+This week I spent my time helping Evan and Sarah with the refactor
+module, working with Julius and Connor on the evaluation stuff, and I
+cleaned up our repo to address some of the feedback from the code review.
+
+I was able to help Evan and Sarah get our tool installed and working on their
+machines which allowed them to continue progress on the refactor tool. I also
+ensured they were able to follow the steps to setup our project for evaluation.
+This helped us understand weak spots in our documentation that we can fix
+before we finish up.
+
+Our repository was quite a mess with many unnecessary files in it, code we
+didn't write, and the structure of files was not intuitive. I did my best to
+clear this up so it is much more managable for people who will be using our
+tool. I didn't have time to work on edge cases, but will do that in the final
+week to make sure our final evaluation process goes smoothly.
+
+Future Plan:
+- Handle edge cases and failure cases for our tool
+- Update README's to ensure our results are able to be replicated
+
