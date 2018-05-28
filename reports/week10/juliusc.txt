@@ -1,0 +1,23 @@
+Julius Christenson: juliusc
+
+Week 9 Individual Status Report
+
+Last Week’s Goals:
+Fix our tools output
+Get actual initial results
+Tidy up codebase to comply with issues raised by other team
+Work on final draft of report
+
+
+Progress From This Week:
+This week, I worked on our tools output to make sure we got nice and clean results. I made it output
+correctly to the dataProcessor tool that conner wrote, and then edited that tool to have each project
+we run our tool on (in defects4j) to have its own set of graphs and data. I then ran our tool to get the
+initial data, and there are still a few hiccups that we then worked to fix. I worked on the final draft
+of the report, helping to get the results into the draft.
+
+Future Plan:
+Next Week:
+Run tool on all files to get all data
+Tidy up Repo
+Finish final report
