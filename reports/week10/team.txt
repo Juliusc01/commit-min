@@ -1,0 +1,27 @@
+Conner Knight: connerk, Evan Blajev: eblajev, Julius Christenson: juliusc, Jacob Ward: jward23, Sarah Zhou: sarahsz
+
+Week 10 Status Report
+
+Last Week’s Goals:
+Evaluate commit-min on all commits in defects4j
+Clean up issues presented by nl2bash
+Look for other ways to evaluate our project to get interesting results
+Write unit and integration tests for commit-min
+
+Progress From This Week:
+
+We refactored our code base so it looks a lot cleaner this week. Separating it into the modules that we had on our diagram, with some extra ones we did not account for. We took the advice from nl2bash and cleaned up our code, adding comments and adding more tests. We continued experiments looking at progressively more commits from the defects4j. After analyzing all the commits in the Math project in the defects4j, we found that our minimization was the same as the expected defects4j commit. This means that we were unable to further minimize the defects4j commits, which were usually small to begin with. This might mean that our tool is not useful on small commits, which is to be expected.
+
+The refactor module has been successfully integrated into our tool. It now runs before delta, creating a list of files that delta should run on.
+
+
+Future Plan:
+Next Week:
+Get ready to present our project
+Continue cleaning up code
+Rewrite steps to reproduce results to ensure they are clear
+
+
+Agenda:
+Talk about evaluation results and what that means for our tool
+
