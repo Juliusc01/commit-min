@@ -20,29 +20,30 @@ done
 echo "Please enter the name of the test to run Commit-min with (TestFileName#testName)"
 read testname
 
-#Run refactor tool here
-echo "IAM HEREEE YO ~!~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!~!@(@"
-git diff --cached $against --name-only -- > /tmp/files.txt
-prefix=`pwd`
-awk -v prefix="$prefix" '{print prefix $0}' /tmp/files.txt
-python $commitmin/refactor/refactor.py /tmp/files.txt
-
-#exec rm files.txt
 repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
 echo "$repo_path" > /tmp/fullDiff.txt
 echo "$repo_path" > /tmp/diffWithContext.txt
 git diff --cached $against -- >> /tmp/fullDiff.txt
+git diff --cached $against -- >> /tmp/diffWithContext.txt
+git diff --cached $against --name-only -- > /tmp/files.txt
+
+#Run refactor tool here
+echo "IAM HEREEE YO ~!~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!~!@(@"
+git diff --cached $against --name-only -- > /tmp/files.txt
+prefix=`pwd`
+for i in $(cat /tmp/files.txt); do echo "$prefix/$i"; done > /tmp/fullpath.txt
+repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
+python $commitmin/refactor/refactor.py /tmp/fullpath.txt $repo_path
+
+#exec rm files.txt
 mkdir -p /tmp/cmpatches
 rm -rf /tmp/cmpatches/*
 ${commitmin}/splitpatch.rb -H /tmp/fullDiff.txt
 mv *.patch /tmp/cmpatches
 
-git diff --cached $against -- >> /tmp/diffWithContext.txt
-git diff --cached $against --name-only -- > /tmp/files.txt
 #exec 1>&2
 python $commitmin/rundelta.py $testname mvn.test $against
 
 # don't want to commit quite yet, non zero prevents this
 echo "Not committing!"
 exit 1
-
