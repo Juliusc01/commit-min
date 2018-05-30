@@ -28,7 +28,9 @@ s = os.getcwd()
 print s
 os.system('echo ' + s + "/Data-Structures/src/Queues/LinkedListBasedQueue.java > files.txt")
 os.chdir(script_dir)
-s = 'python refactor.py ' +  s + '/files.txt'
+filedir = script_dir + '/tests/src/files.txt'
+repodir = script_dir + '/tests/src/Data-Structures'
+s = 'python refactor.py ' +  filedir + ' ' + repodir
 os.system(s)
 c = 'rm -rf ' + script_dir + '/tests'
 os.system(c)
