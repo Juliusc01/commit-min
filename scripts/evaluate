@@ -1,6 +1,6 @@
 #!/bin/sh
-projects=(Lang) # array of projects to test
-numbugs=$1  # pass in the number of bugs to test
+projects=($1) # array of projects to test
+numbugs=$2  # pass in the number of bugs to test
 commitminpath="$(git rev-parse --show-toplevel)"
 defects4jpath="$(which defects4j)"
 defects4jpath=${defects4jpath::-13}  # cut off the bin/defects4j
