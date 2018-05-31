@@ -48,7 +48,9 @@ for project in ${projects[@]}; do
     git diff $buggyid $fixedid --name-only -- $srcpath > /tmp/files.txt
 
     # run our tool. Normally you pass in a testname, but we don't need it here
+    startrundelta=`date +%s`
     python ${commitminpath}/delta/rundelta.py testname defects4j.test $buggyid
+    endrundelta=`date +%s`
     python ${commitminpath}/scripts/diffMaker.py
     mv -f /tmp/diffOther.txt ${commitminpath}/experiments/
     mv -f /tmp/diffNewOurs.txt ${commitminpath}/experiments/
@@ -57,7 +59,7 @@ for project in ${projects[@]}; do
     echo diffOurs${project}${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
     echo diffOther${project}${buggyid}.txt >> ${commitminpath}/experiments/diffFiles.txt
     echo $loopCount >> ${commitminpath}/experiments/diffFiles.txt
-    echo "1" >> ${commitminpath}/experiments/diffFiles.txt
+    echo $((endrundelta-startrundelta)) >> ${commitminpath}/experiments/diffFiles.txt
     loopCount=$((loopCount + 1))
 
     # clean up
