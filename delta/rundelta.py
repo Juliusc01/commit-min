@@ -5,6 +5,10 @@ import sys
 import signal
 import os
 
+'''
+takes the given path to a diff and creates a map from the files specified in the
+diff to its corresponding changed lines and returns that mapping
+'''
 def parse_diff(full_path):
   path_to_diffs = {}  # map from path to list of diff lines
   diffs = []
@@ -47,6 +51,10 @@ def parse_diff(full_path):
 
   return path_to_diffs
 
+'''
+takes a mapping between files and the changed lines and
+sets it up to pass into calls run_delta from delta
+'''
 def run_multidelta(path_to_diffs):
   # takes a set, and concats into space seperated string
   files = ' '.join(str(path) for path in path_to_diffs.keys())
@@ -62,6 +70,11 @@ def run_multidelta(path_to_diffs):
   run_delta = ' '.join([multi, unit_test, buggy_commit, test_script, files])
   call(run_delta, shell=True)
 
+
+
+'''
+
+'''
 def find_reverts(path_to_diffs):
   path_to_reverts = {}
   reverts = deque([])  # keep reverts in a queue
@@ -110,6 +123,11 @@ def revert_changes(path_to_reverts):
     orig_file.writelines(new_lines)
     orig_file.close()
     backup_file.close()
+
+
+'''
+prints out the changes that we made to the user
+'''
 
 def print_new_changes(full_path, path_to_reverts):
   path_to_diffs = {}  # map from path to list of diff lines
