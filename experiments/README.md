@@ -5,7 +5,7 @@ The requirements from the README in the root directory must also be met to run o
 - plotly
     - To install, run:
         ```
-        sudo pip install plotly
+        sudo pip2 install plotly
         ```
 - defects4j (https://github.com/rjust/defects4j)
 
