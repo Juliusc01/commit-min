@@ -19,7 +19,8 @@ We have only worked from the CSE VM, but you may be able to use other systems
 
  1. Clone commit-min
 	 - ```git clone https://github.com/Juliusc01/commit-min```
- 2. Cd into the commit-min directory and run the install script to get commit-min on your repo
+ 2. Cd into the commit-min directory then cd into the folder scripts
+ 3. Run the install script to get commit-min on your repo
 	 - ```./commit-min-install /Full/Path/To/My/Repo/```
 
 ## Example
