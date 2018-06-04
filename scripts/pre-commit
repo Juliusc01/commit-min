@@ -31,13 +31,21 @@ repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
 echo "$repo_path" > /tmp/fullDiff.txt
 echo "$repo_path" > /tmp/diffWithContext.txt
 git diff --cached $against -- >> /tmp/fullDiff.txt
+git diff --cached $against -- >> /tmp/diffWithContext.txt
+git diff --cached $against --name-only -- > /tmp/files.txts
+
+#Run refactor tool here
+echo "IAM HEREEE YO ~!~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!~!@(@"
+git diff --cached $against --name-only -- > /tmp/files.txt
+prefix=`pwd`
+for i in $(cat /tmp/files.txt); do echo "$prefix/$i"; done > /tmp/fullpath.txt
+repo_path="$(git rev-parse --show-toplevel)"  # get the repo root dir
+python ${commitminpath}/refactor/refactor.py /tmp/fullpath.txt $repo_path
+
 mkdir -p /tmp/cmpatches
 rm -rf /tmp/cmpatches/*
 ${commitminpath}/scripts/splitpatch.rb -H /tmp/fullDiff.txt
 mv *.patch /tmp/cmpatches
-
-git diff --cached $against -- >> /tmp/diffWithContext.txt
-git diff --cached $against --name-only -- > /tmp/files.txt
 
 # call rundelta and time execution
 startrundelta=`date +%s`
