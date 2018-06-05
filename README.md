@@ -33,7 +33,6 @@ git clone https://github.com/jaleum/hellogitworld
 	cd hellogitworld
 	echo "//this is a comment" >> src/main/java/com/github/App.java
 	echo "//this is a second comment" >> src/main/java/com/github/App.java
-	echo "this is a third comment" >> src/main/java/com/github/test.txt
 	git add .
 	git commit -m "This is a test commit"
 	```
