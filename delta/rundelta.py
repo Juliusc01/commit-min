@@ -56,8 +56,12 @@ takes a mapping between files and the changed lines and
 sets it up to pass into calls run_delta from delta
 '''
 def run_multidelta(path_to_diffs):
+  paths = path_to_diffs.keys()
+  if not paths:
+    return
+
   # takes a set, and concats into space seperated string
-  files = ' '.join(str(path) for path in path_to_diffs.keys())
+  files = ' '.join(str(path) for path in paths)
 
   # gets the directory this script is in, should be commit-min
   script_dir = os.path.dirname(os.path.realpath(__file__)) + '/'
