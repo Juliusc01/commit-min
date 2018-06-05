@@ -16,8 +16,8 @@ def main():
 
     fileList = allFiles.read().splitlines()
 
-    if(len(fileList) % 2 != 0):
-        print("diffFiles must be even")
+    if(len(fileList) % 4 != 0):
+        print("diffFiles must be multiple of four")
         return
     i = 0
     accsList = []
@@ -45,26 +45,8 @@ def main():
         timeList.append(fileList[i+3])
         i += 4
 
-    '''
-    trace1 = go.Bar(
-        x=['giraffes', 'orangutans', 'monkeys'],
-        y=[20, 14, 23],
-        name='SF Zoo'
-    )
-    trace2 = go.Bar(
-        x=['giraffes', 'orangutans', 'monkeys'],
-        y=[12, 18, 29],
-        name='LA Zoo'
-    )
 
-    data = [trace1, trace2]
-    layout = go.Layout(
-        barmode='group'
-    )
-
-    fig = go.Figure(data=data, layout=layout)
-    py.plot(fig, filename='grouped-bar')
-    '''
+    #producing bar graphs for accuracy, precision, and time
     plotly.offline.plot({
        "data": [Bar
             (x=comList, y=accsList, width=1)],
@@ -92,7 +74,7 @@ def main():
     }, filename='timeGraph.html', auto_open=False)
 
 
-
+    #producing tables for accuracy, precision, and time
     plotly.offline.plot({
         "data": [Table( header=dict(values=['Bug number', 'percent of bug fix lines found']),
     cells=dict(values=[comList,
@@ -115,19 +97,7 @@ def main():
         "layout": Layout(title="Bug number vs Time Graph")
     }, filename='timeTable.html', auto_open=False)
 
-    #data = [accTrace]
-    #py.iplot(data, filename='scatter-mode')
 
-
-    #print("accuracy", accsList[1])
-    #print("precision", precsList[1])
-
-    '''
-    plotly.offline.plot({
-        "data": [Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],
-        "layout": Layout(title="hello world")
-    })
-    '''
 
 if __name__ == '__main__':
     main()

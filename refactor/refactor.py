@@ -25,10 +25,11 @@ def copyFilesIntoTmpDir(f, actual_files, paths, new_file_path, old_file_path, sc
         os.system(c)
 
     os.chdir(repo)
-    os.system('pwd')
+    # os.chdir('/home/eblajev/testing/hellogitworld/')
+    # os.system('git log')
     os.system('git stash --include-untracked')
     os.chdir(script_dir)
-    # # copy into old folder
+    # copy into old folder
     for i in range(len(actual_files)):
         c = 'cp ' + paths[i] + actual_files[i] + ' ' + old_file_path
         os.system(c)
@@ -46,11 +47,14 @@ def setupCompareDir():
 # Run JPlag to compare if the file changes are refactors
 def runJPlagCompare(i, actual_files, compare_path, resultpath, full_compare, output, paths, script_dir):
     for file in actual_files:
+        print file
         c = 'cp tmp/new/' + file + ' ' + compare_path + '/new'
         os.system(c)
         c = 'cp tmp/old/' + file + ' ' + compare_path + '/old'
         os.system(c)
-        s = "java -jar jplag-2.11.9-SNAPSHOT-jar-with-dependencies.jar -l java17 -r {0} -s {1}".format(resultpath, full_compare)
+        print "resultpath: " + resultpath
+        print "full_compare: " + full_compare
+        s = "java -jar jplag-2.11.9-SNAPSHOT-jar-with-dependencies.jar -t 1 -l java17 -r {0} -s {1}".format(resultpath, full_compare)
         os.system(s)
         # Check if its 100% similarity
         os.chdir('results')
@@ -59,7 +63,7 @@ def runJPlagCompare(i, actual_files, compare_path, resultpath, full_compare, out
             output.append(paths[i] + file)
         # delete all results for this comparison
         removeDirectories(full_compare, script_dir)
-    i+=1
+        i+=1
 
 # Helper function for runJPlagCompare, cleans up directors for each of the files
 def removeDirectories(full_compare, script_dir):
@@ -81,10 +85,19 @@ def printToOutput(output, outputfile):
 
 
 files = sys.argv[1]
+repo = sys.argv[2]
+print repo
 script_dir = os.path.dirname(os.path.realpath(__file__))
+print script_dir
 os.chdir(script_dir)
 if '.txt' not in files:
     raise Exception('Pass in a text file')
+
+# testing
+f = open(files)
+for line in f:
+    print line
+# end testing
 
 setupInitDir()
 f = open(files)
@@ -98,7 +111,7 @@ actual_files = []
 paths = []
 for line in f:
     t = line.rpartition("/")
-    repo = t[0]
+    # repo = t[0]
     actual_files.append(t[2].rstrip('\n'))
     paths.append(t[0] + t[1])
 copyFilesIntoTmpDir(f, actual_files, paths, new_file_path, old_file_path, script_dir, repo)

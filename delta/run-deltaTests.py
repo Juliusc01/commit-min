@@ -11,6 +11,10 @@ def main():
     else:
         print "Parse diff test succeeded!"
 
+'''
+tests the parseDiff from rundelta, important that it handles things
+correctly since it's taking a wide range of different diffs
+'''
 def testParseDiff():
     script_dir = os.path.dirname(__file__)
     diff_file_path = os.path.join(script_dir, "tests/actualDiff.txt")
