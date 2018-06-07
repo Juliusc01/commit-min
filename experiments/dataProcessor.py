@@ -55,7 +55,7 @@ def main():
                         yaxis=dict(title='percent of bug fix lines found', range=[0,1.05])
 
                         )
-    },filename='accuracyGraph.html', auto_open=False)
+    },filename='accuracyGraph.png', auto_open=False)
 
     plotly.offline.plot({
         "data": [Bar
@@ -63,7 +63,7 @@ def main():
         "layout": Layout(title="Bug number vs Precision Graph",
                          xaxis=dict(title='Bug number'),
                          yaxis=dict(title='percent of tools bug fix lines valid(valid means line in expected)', range=[0, 1.05]))
-    },filename='precisionGraph.html', auto_open=False)
+    },filename='precisionGraph.png', auto_open=False)
 
     plotly.offline.plot({
         "data": [Bar
@@ -71,7 +71,7 @@ def main():
         "layout": Layout(title="Bug number vs Time Graph",
                          xaxis=dict(title='Bug number'),
                          yaxis=dict(title='time for tool to run(seconds)'))
-    }, filename='timeGraph.html', auto_open=False)
+    }, filename='timeGraph.png', auto_open=False)
 
 
     #producing tables for accuracy, precision, and time
@@ -80,14 +80,14 @@ def main():
     cells=dict(values=[comList,
                        accsList]))],
         "layout": Layout(title="Bug number vs accuracy")
-    },filename='accuracyTable.html', auto_open=False)
+    },filename='accuracyTable.png', auto_open=False)
 
     plotly.offline.plot({
         "data": [Table(header=dict(values=['Bug number', 'percent of tools bug fix lines valid(valid means line in expected)']),
                        cells=dict(values=[comList,
                                           precsList]))],
         "layout": Layout(title="Bug number vs precision")
-    }, filename='precisionTable.html', auto_open=False)
+    }, filename='precisionTable.png', auto_open=False)
 
     plotly.offline.plot({
         "data": [Table(
@@ -95,7 +95,7 @@ def main():
             cells=dict(values=[comList,
                                timeList]))],
         "layout": Layout(title="Bug number vs Time Graph")
-    }, filename='timeTable.html', auto_open=False)
+    }, filename='timeTable.png', auto_open=False)
 
 
 
